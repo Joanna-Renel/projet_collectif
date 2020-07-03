@@ -21,7 +21,7 @@ USE `docx` ;
 -- Table `docx`.`comments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `docx`.`comments` (
-  `id_comments` INT NOT NULL,
+  `id_comments` INT NOT NULL, AUTO_INCREMENT
   `pseudo` VARCHAR(45) NOT NULL,
   `created_at` VARCHAR(45) NOT NULL,
   `commentaire` TEXT NOT NULL,
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `docx`.`docs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `docx`.`docs` (
-  `id_docs` INT NOT NULL,
+  `id_docs` INT NOT NULL, AUTO_INCREMENT
   `type` VARCHAR(255) NOT NULL,
   `taille` VARCHAR(255) NOT NULL,
   `created_at` VARCHAR(255) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `docx`.`utilisateur` (
   `id_utilisateur` INT NOT NULL AUTO_INCREMENT,
   `prenom` VARCHAR(45) NOT NULL,
   `nom` VARCHAR(45) NOT NULL,
-  `pseudo` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(255) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `adresse` VARCHAR(255) NOT NULL,
   `password` VARCHAR(45) NOT NULL,

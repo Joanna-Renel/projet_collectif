@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="row col-md-12">
+
+    <div class="col-md-3">
+
+        <ul>
+            <div id="info">
+                <li>
+                    <a href="">Informations personnelles</a>
+                </li>
+            </div>
+            
+            <li>
+                <a href="">Documents</a>
+            </li>
+          {#  <li>
+                <a href="">Informations personnelles</a>
+            </li>
+            #}
+        </ul>
+        <button class="btn">Coursier</button>
+        <button class="btn">Contacter un conseiller</button>
+        <button class="btn">Supprimer compte</button>
+    </div>
+
+    <form class=" col-md-6 mx-auto" action="" method="post" enctype="data">
+        <div class="form-group">
+            <label for="title"> Titre : </label>
+            <input class="form-control" type="text" name="title" id="title">
+        </div>
+        <div class="form-group">
+            <label for="content"> Contenu : </label>
+            <textarea class="form-control" name="content" id="content" cols="30" rows="10">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="image"> Image : </label>
+            <input class="form-control" type="text" name="image" id="image">
+        </div>
+        <button type="submit" class="btn btn-dark">Enregistrer</button>
+
+    </form>
+
+    <div class="col-md-9">
+
+        <h1> Bienvenue dans votre espace !</h1>
+
+        {% for data in user %}
+            
+        {{ form_start(formUser, {'attr':{'class':'col-md-6 mx-auto'}}) }}
+
+            {{ form_row(formUser.prenom, )}}
+            {{ form_row(formUser.nom, )}}
+            {{ form_row(formUser.email, )}}
+            {{ form_row(formUser.adresse, )}}
+            <div id="password">
+
+            </div>
+            {{form_end(formUser)}}
+            <div class="form-group">
+                <label for="_password"> Mot de passe : </label>
+                <input class="form-control" type="text" name="_password" id="_password" value="{{ value }}">
+            </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

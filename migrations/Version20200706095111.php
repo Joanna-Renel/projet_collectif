@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200704191833 extends AbstractMigration
+final class Version20200706095111 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,12 +20,16 @@ final class Version20200704191833 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE docs (id INT AUTO_INCREMENT NOT NULL, type VARCHAR(255) NOT NULL, taille VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, date_edition DATETIME NOT NULL, date_echeance DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE docs ADD utilisateur_id INT NOT NULL');
+        $this->addSql('ALTER TABLE docs ADD CONSTRAINT FK_51572BB7FB88E14F FOREIGN KEY (utilisateur_id) REFERENCES utilisateur (id)');
+        $this->addSql('CREATE INDEX IDX_51572BB7FB88E14F ON docs (utilisateur_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE docs');
+        $this->addSql('ALTER TABLE docs DROP FOREIGN KEY FK_51572BB7FB88E14F');
+        $this->addSql('DROP INDEX IDX_51572BB7FB88E14F ON docs');
+        $this->addSql('ALTER TABLE docs DROP utilisateur_id');
     }
 }

@@ -50,7 +50,7 @@ class Utilisateur
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=45)
      */
     private $premium;
 
@@ -60,19 +60,19 @@ class Utilisateur
     private $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity=docs::class, mappedBy="utilisateur")
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="utilisateur", orphanRemoval=true)
      */
-    private $utilisateurs;
+    private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=comments::class, mappedBy="utilisateur", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Docs::class, mappedBy="utilisateur", orphanRemoval=true)
      */
-    private $commentaires;
+    private $documents;
 
     public function __construct()
     {
-        $this->utilisateurs = new ArrayCollection();
-        $this->commentaires = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->documents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,30 +177,30 @@ class Utilisateur
     }
 
     /**
-     * @return Collection|docs[]
+     * @return Collection|Comments[]
      */
-    public function getUtilisateurs(): Collection
+    public function getComments(): Collection
     {
-        return $this->utilisateurs;
+        return $this->comments;
     }
 
-    public function addUtilisateur(docs $utilisateur): self
+    public function addComment(Comments $comment): self
     {
-        if (!$this->utilisateurs->contains($utilisateur)) {
-            $this->utilisateurs[] = $utilisateur;
-            $utilisateur->setUtilisateur($this);
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUtilisateur($this);
         }
 
         return $this;
     }
 
-    public function removeUtilisateur(docs $utilisateur): self
+    public function removeComment(Comments $comment): self
     {
-        if ($this->utilisateurs->contains($utilisateur)) {
-            $this->utilisateurs->removeElement($utilisateur);
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
             // set the owning side to null (unless already changed)
-            if ($utilisateur->getUtilisateur() === $this) {
-                $utilisateur->setUtilisateur(null);
+            if ($comment->getUtilisateur() === $this) {
+                $comment->setUtilisateur(null);
             }
         }
 
@@ -208,30 +208,30 @@ class Utilisateur
     }
 
     /**
-     * @return Collection|comments[]
+     * @return Collection|Docs[]
      */
-    public function getCommentaires(): Collection
+    public function getDocuments(): Collection
     {
-        return $this->commentaires;
+        return $this->documents;
     }
 
-    public function addCommentaire(comments $commentaire): self
+    public function addDocument(Docs $document): self
     {
-        if (!$this->commentaires->contains($commentaire)) {
-            $this->commentaires[] = $commentaire;
-            $commentaire->setUtilisateur($this);
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->setUtilisateur($this);
         }
 
         return $this;
     }
 
-    public function removeCommentaire(comments $commentaire): self
+    public function removeDocument(Docs $document): self
     {
-        if ($this->commentaires->contains($commentaire)) {
-            $this->commentaires->removeElement($commentaire);
+        if ($this->documents->contains($document)) {
+            $this->documents->removeElement($document);
             // set the owning side to null (unless already changed)
-            if ($commentaire->getUtilisateur() === $this) {
-                $commentaire->setUtilisateur(null);
+            if ($document->getUtilisateur() === $this) {
+                $document->setUtilisateur(null);
             }
         }
 

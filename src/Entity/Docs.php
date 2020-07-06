@@ -43,7 +43,7 @@ class Docs
     private $date_echeance;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="utilisateurs")
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="documents")
      * @ORM\JoinColumn(nullable=false)
      */
     private $utilisateur;

@@ -33,7 +33,7 @@ class Comments
     private $commentaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $utilisateur;

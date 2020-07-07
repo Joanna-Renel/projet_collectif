@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h1 class="display-4 text-center">Mes documents</h1>
+
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <form class=" col-md-6 mx-auto" action="" method="post" enctype="data"> 
+
+                <select name="type" id="typeDoc">
+                    <option value="Type document">{#{{ data.type }}#} </option>
+                </select>
+                <input class="form-control" type="file" name="document" id="document">
+                <button class="btn">Ajouter</button>
+            </form>
+        </div>
+
+        <table class="table table-border">
+
+            <thead>
+                <th>Supprimer</th>
+                <th>Prolonger</th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td class="fa far-del"></td>
+                    <td>Prolonger</td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+   
+
+
+{% endblock %}

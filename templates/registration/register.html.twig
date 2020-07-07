@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{# Mise en forme du titre  #}
+{% if (registration) %}
+S'inscrire
+{% else %}
+Se connecter
+{% endif %}
+
+
+{{ form_start(formUtilisateur, {'attr': {'class': 'col-md-7 mx-auto'}}) }}
+
+  {{ form_row(formUtilisateur.prenom, {'attr': {'placeholder': "Prénom"}}) }}
+
+  {{ form_row(formUtilisateur.nom, {'attr': {'placeholder': "Nom"}}) }}
+
+  {{ form_row(formUtilisateur.email, {'attr': {'placeholder': "Entrez votre adresse email"}}) }}
+
+  {{ form_row(formUtilisateur.password, {'attr': {'placeholder': "Entrez votre mot de passe"}}) }}
+
+  {# Ajouter un champ pour confirmer le mot de passe avec à nouveau formUtilisateur.password ? #}
+  {# {{ form_row(formUtilisateur.password, {'attr': {'placeholder': "Confirmez votre mot de passe"}}) }} #}
+
+
+
+        {# Remplacer la couleur du bouton #}
+        <button type="submit" class="btn btn-info mb-5">
+
+        {# Condition qui permet au bouton de changer en fonction du scénario inscription/connexion d'un utilisateur
+        (id connu ou inconnu pour modifier ou non l'article) #}
+        {% if registration %}
+        S'inscrire
+        {% else %}
+        Se connecter
+        {% endif %}
+
+        </button>
+
+    
+{{ form_end(formUtilisateur) }}
+
+
+  
+{% block body %}
+
+{% endblock %}

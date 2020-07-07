@@ -2,71 +2,82 @@
 
 {% block body %}
 
+<h1 class="text-center"> Bienvenue dans votre espace, {{ prenom }} !</h1>
+
 <div class="row col-md-12">
 
     <div class="col-md-3">
 
-        <ul>
-            <div id="info">
-                <li>
-                    <a href="">Informations personnelles</a>
-                </li>
-            </div>
-            
-            <li>
-                <a href="">Documents</a>
+        <ul class="navbar-nav ">
+          
+            <li class="nav-item" style="border-radius: 50px;">
+              <a class="nav-link" href="#">Mes informations</a>
             </li>
-          {#  <li>
-                <a href="">Informations personnelles</a>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mes documents</a>
             </li>
-            #}
+
+            <div class="whitespace mt-3"></div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Contacter un conseiller </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Solliciter un coursier</a>
+            </li>
+
         </ul>
-        <button class="btn">Coursier</button>
-        <button class="btn">Contacter un conseiller</button>
-        <button class="btn">Supprimer compte</button>
+
+        <div class="whitespace mt-5"></div>
+
+        <button class="btn"><a href="">Je m'abonne à Docx + </a> </button>
+
+        <button class="btn"><a href="">Supprimer mon compte</a></button>   
+
     </div>
 
-    <form class=" col-md-6 mx-auto" action="" method="post" enctype="data">
-        <div class="form-group">
-            <label for="title"> Titre : </label>
-            <input class="form-control" type="text" name="title" id="title">
-        </div>
-        <div class="form-group">
-            <label for="content"> Contenu : </label>
-            <textarea class="form-control" name="content" id="content" cols="30" rows="10">
-            </textarea>
-        </div>
-        <div class="form-group">
-            <label for="image"> Image : </label>
-            <input class="form-control" type="text" name="image" id="image">
-        </div>
-        <button type="submit" class="btn btn-dark">Enregistrer</button>
+    <div class="col-md-7">
 
-    </form>
 
-    <div class="col-md-9">
-
-        <h1> Bienvenue dans votre espace !</h1>
-
-        {% for data in user %}
+         {# {% for data in utilisateur %}
             
         {{ form_start(formUser, {'attr':{'class':'col-md-6 mx-auto'}}) }}
 
-            {{ form_row(formUser.prenom, )}}
-            {{ form_row(formUser.nom, )}}
-            {{ form_row(formUser.email, )}}
-            {{ form_row(formUser.adresse, )}}
+            {{ form_row(formUser.prenom, {'attr': {'value':'{{ value }}' }})}}
+            {{ form_row(formUser.nom )}}
+            {{ form_row(formUser.email )}}
+            {{ form_row(formUser.adresse )}}
+
             <div id="password">
 
             </div>
-            {{form_end(formUser)}}
             <div class="form-group">
                 <label for="_password"> Mot de passe : </label>
                 <input class="form-control" type="text" name="_password" id="_password" value="{{ value }}">
             </div>
+            
+            {{form_end(formUser)}} #}
+          
+
+        <form class=" col-md-6 mx-auto" action="" method="post" enctype="data"> 
+            <div class="form-group">
+                <label for="_username"> Email : </label>
+                <input class="form-control" type="text" name="_username" id="_username">
+            </div>
+
+            <div class="form-group d-flex">
+                <label for="_password"> Mot de passe : ***********</label>
+                <button class="btn"><a href="#">Modifier</a></button>
+            </div>
+            <button type="submit" class="btn btn-dark">Enregistrer les modifications</button>
+
+        </form>
+
     </div>
 </div>
 
-{% endfor %}
+{# {% endfor %}  #}
 
 {% endblock %}

@@ -14,14 +14,12 @@ class UtilisateurFixtures extends Fixture
         // J'appelle le namespace Factory et je génère des fixtures/fausses données en français avec la bibliothèque/ Class Faker (https://github.com/fzaninotto/Faker)
         $faker = \Faker\Factory::create('fr_FR');
         
-        
-
         // Création d'une boucle pour créer 10 utiisateurs en BDD
         for($i = 1; $i <= 10; $i++)
         {
             $utilisateur = new Utilisateur;
-            
-        // Création des données utilisateur : prénom, nom, username, email, adresse, password, premium
+
+            // Création des données utilisateur : prénom, nom, username, email, adresse, password, premium
             $utilisateur->setPrenom($faker->firstName)
 
                         ->setNom($faker->lastName)
@@ -44,12 +42,12 @@ class UtilisateurFixtures extends Fixture
             }
             
             
-        // Préparation des requêtes d'insertion dans la table Utilisateur
-        $manager->persist($utilisateur);
+            // Préparation des requêtes d'insertion dans la table Utilisateur
+            $manager->persist($utilisateur);
 
-        
-        // Exécution des requêtes SQL dans la table Utilisateur
-        $manager->flush();
+            
+            // Exécution des requêtes SQL dans la table Utilisateur
+            $manager->flush();
 
         }
 

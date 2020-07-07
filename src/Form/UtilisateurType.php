@@ -16,11 +16,10 @@ class UtilisateurType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('prenom')
-            ->add('pseudo')// input de contrôle créé indépendamment
+            // ->add('pseudo')// input de contrôle créé indépendamment
             ->add('nom')
             ->add('adresse')
             ->add('password', PasswordType::class)
-
            
         ;
     }

@@ -1,22 +1,52 @@
-.logo
-{
-    height: 200px;
-    width: 180px;
+
+ .navbar{
+    color:#323232;
 }
 
+
+.navaraccueil, .navbarservices, .navbarapropos{
+    color: #4ab64a
+}
+
+.logo
+{
+    width: 100px;
+   
+}
+
+.navigation_navbar{
+    color:#323232;
+}
 
 html{
     font-family: anonymous pro;
 
 }
 
+.navigation li{
+      font-size: 25px;
+      color:#323232;
+
+}
+
+.footer li:before {content: "•";
 
 
+}
 
+.footer, li{
+      color:  #4ab64a;
+      
+}
 
-
-
-
-
+body{
+    background: #eefdee;
+}
+    
+ .coordonnees, li{
+    list-style-type: none;
+    display: inline;
+    background: #eefdee;
+ }
 
 

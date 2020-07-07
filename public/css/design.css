@@ -1,3 +1,30 @@
+.navigation
+{
+    background:#eefdee;
+}
+
+.menu li a{
+    color: #4ab64a;
+    padding-top:70px;
+    position: center;
+    list-style-type:none;
+    display: inline;
+    padding-right: 20px;
+    margin: 50px;
+
+}
+
+
+.footer{
+    background:#323232;
+    height: 120px;
+    
+}
+.coordonnees li a{
+    color: #4ab64a;
+    margin-top: 100px;;
+
+}
 
  .navbar{
     color:#323232;
@@ -30,23 +57,52 @@ html{
 }
 
 .footer li:before {content: "•";
-
+   padding: 10px;
 
 }
 
 .footer, li{
       color:  #4ab64a;
+      padding-top: 10px;
       
+      
+}
+
+.footer{
+    margin-top: 400px;
 }
 
 body{
     background: #eefdee;
 }
-    
- .coordonnees, li{
-    list-style-type: none;
+
+ .coordonnees li{
+    list-style-type:none;
     display: inline;
-    background: #eefdee;
+    padding-right: 30px;
+    margin: 50px;
+    position:  center
+
+    
  }
 
+
+ .footer li{
+     
+     position: center;
+     list-style-type:none;
+     display: inline;
+     padding-right: 30px;
+     margin: 70px;
+     font-size: 20px;
+ 
+ }
+
+ 
+
+ .coordonnees ul{
+margin-top: 70px;;
+
+
+ }
 

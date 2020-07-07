@@ -28,13 +28,18 @@ class UtilisateurController extends AbstractController
             les champs répertoriés dans la classe UtilisateurType
             
             Les champs du formulaire sont préremplis par les données utilisateur.
-            L'utilisateur étant identifié grâce à son id
+            L'utilisateur étant identifié par son id
         */
         $utilisateur = new Utilisateur;
                
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
 
 
+        // $now = new \DateTime;
+
+        // dump($now->days);
+
+        dump($utilisateur);
         return $this->render('utilisateur/membre.html.twig', [
             'formUser' => $form->createView(),
             'prenom' => $utilisateur->getPrenom(),
@@ -42,10 +47,11 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
+    // showDocs() permet d'avoir accès à la liste des documents en BDD
     /**
      * @Route("/membre/docs", name="membre_docs")
      */
-    public function showDocs()
+    public function showDocs(DocsRepository $repo)
     {
         return $this->render('utilisateur/membre_document.html.twig');
     }

@@ -12,8 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/registration", name="registration")
-     * @Route("/login", name="login")
+     * @Route("/inscription", name="registration")
+     * @Route("/connexion/{id}", name="login")
      */
     public function register(Utilisateur $utilisateur = null, Request $request, EntityManagerInterface $manager)
     {

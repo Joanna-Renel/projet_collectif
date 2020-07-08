@@ -5,7 +5,9 @@
 
  <meta charset="UTF-8>
 
-  <title>{% block title %} NOTRE PROJET COLLECTIF {% endblock %}</title>{% block stylesheets %}
+  <title>{% block title %} NOTRE PROJET COLLECTIF {% endblock %}</title>
+  
+  {% block stylesheets %}
   
   <link href=" https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap " rel="stylesheet ">
   <link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css " integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk " crossorigin="anonymous ">
@@ -31,12 +33,13 @@
           <span class="sr-only ">(current)</span>
         </a>
       </li>
+
       <div class="logo "> 
         <img src="{{asset( 'photos/logo.png')}} ">
       </div>
 
       <li class="menu">
-      <a href="{{ path('membre') }} "</a>
+        <a href="{{ path('membre') }} "></a>
       </li>
 
       <li class="menu">
@@ -47,14 +50,22 @@
         <a class="nav" href="# ">A PROPOS</a>
       </li>
 
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle " href="# " id="navbarDropdown " role="button " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">MEMBRE</a>
-        <div class="dropdown-menu " aria-labelledby="MEMBRE ">
-          <a class="dropdown-item " href="# ">S'inscrire</a>
-          <a class="dropdown-item " href="# ">Se connecter</a>
-          <div class="dropdown-divider ">
-          </div>       
+
+      <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         MEMBRE
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">S'inscrire</a>
+          <a class="dropdown-item" href="#">Se connecter</a>
+          <div class="dropdown-divider"></div>
+        </div>
+
       </li>
+
+      
 </nav>
 
 <section class="container mon-conteneur ">{% block body %} {% endblock %}</section>

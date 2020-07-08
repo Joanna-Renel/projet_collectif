@@ -17,13 +17,12 @@
  
    </head>
 
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <nav class="navigation navbar-expand-lg navbar ">
-       <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
-    <span class="navbar-toggler-icon ">
-    </div>
-    </span>
-   </button>
 
    <div class="collapse navbar-collapse " id="navbarSupportedContent ">
     <ul class="mr-auto menu  d-flex text-center ">
@@ -36,9 +35,7 @@
 
       <div class="logo "> 
         <img src="{{asset( 'photos/logo.png')}} ">
-      </div>
-
-      <li class="menu">
+      </div>    <li class="menu">
         <a href="{{ path('membre') }} "></a>
       </li>
 
@@ -63,10 +60,16 @@
           <div class="dropdown-divider"></div>
         </div>
 
-      </li>
-
-      
+      </li>     
 </nav>
+
+
+<div class="guillemets">   ❞  </div>
+
+    <p>  ?A testimonial is person's written or spoken statement extolling the virtue of a product ❞  ?
+</blockquote>
+
+
 
 <section class="container mon-conteneur ">{% block body %} {% endblock %}</section>
 <footer class=" footer text-center ">

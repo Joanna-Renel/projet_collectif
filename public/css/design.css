@@ -1,3 +1,34 @@
+
+#carousel{
+    float:center;
+    margin-top:-91px;
+    margin-left:200px;
+}
+
+footer{
+    
+    position:absolute;
+    padding:0;
+    bottom:0; 
+    
+    Right:0;
+    width:100%;
+    height:50px;
+    
+    }
+
+.blockquote{
+    margin: 120px;
+    font-size:1,25rem;
+   
+}
+
+
+ul li{
+    list-style-type:none;
+
+}
+
 .navigation
 {
     background:#eefdee;
@@ -5,7 +36,7 @@
 
 .menu li a{
     color: #4ab64a;
-    padding-top:70px;
+    padding-top:50px;
     position: center;
     list-style-type:none;
     display: inline;
@@ -56,10 +87,7 @@ html{
 
 }
 
-.footer li:before {content: "•";
-   padding: 10px;
 
-}
 
 .footer, li{
       color:  #4ab64a;

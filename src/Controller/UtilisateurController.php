@@ -13,12 +13,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UtilisateurController extends AbstractController
 {
+    /**
+     * @Route("/")
+     */
+    // /**
+    //  * @Route("/membre/edit", name="membre")
+    //  */
+    // public function form(Utilisateur $utilisateur, Request $request, EntityManagerInterface $manager)
+    // {
+    //     $utilisateur = new Utilisateur;
+                   
+    //     $form = $this->createForm(UtilisateurType::class, $utilisateur);
+
+    //     // $form->handleRequest($request);
+
+    //     dump($utilisateur);
+
+    //     return $this->render('utilisateur/membre.html.twig', [
+    //         'formUser' => $form->createView(),
+    //         // 'prenom' => $utilisateur->getPrenom(),
+    //         // 'utilisateur' => $utilisateur
+    //     ]);
+       
+    // }
+
+
+
     // Création d'une nouvelle route pour afficher la page 
     // profil d'un membre
     /**
-     * @Route("/membre", name="membre")
+     * @Route("/membre/{id}", name="membre")
      */
-    public function profil(UtilisateurRepository $repo)
+    public function profil(UtilisateurRepository $repo, Request $request, $id)
     {
         /*
             profil() affiche la page du membre après qu'il se soit connecté
@@ -30,16 +56,14 @@ class UtilisateurController extends AbstractController
             Les champs du formulaire sont préremplis par les données utilisateur.
             L'utilisateur étant identifié par son id
         */
-        $utilisateur = new Utilisateur;
+        $utilisateur = $repo->find($id);
                
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
 
+        $form->handleRequest($request);
 
-        // $now = new \DateTime;
+        
 
-        // dump($now->days);
-
-        dump($utilisateur);
         return $this->render('utilisateur/membre.html.twig', [
             'formUser' => $form->createView(),
             'prenom' => $utilisateur->getPrenom(),
@@ -47,20 +71,20 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
-    // showDocs() permet d'avoir accès à la liste des documents en BDD
-    /**
-     * @Route("/membre/docs", name="membre_docs")
-     */
-    public function showDocs(DocsRepository $repo)
-    {
-        return $this->render('utilisateur/membre_document.html.twig');
-    }
+    // // showDocs() permet d'avoir accès à la liste des documents en BDD
+    // /**
+    //  * @Route("/membre/docs", name="membre_docs")
+    //  */
+    // public function showDocs(DocsRepository $repo)
+    // {
+    //     return $this->render('utilisateur/membre_document.html.twig');
+    // }
 
   
-    /**
-     * @Route("/membre/name", name="page_membre")
-     */
-    // public function home(Utilisateur $utilisateur, Request $request, EntityManagerInterface $manager)
+    // /**
+    //  * @Route("/membre", name="page_membre")
+    //  */
+    // public function home(UtilisateurRepository $repo, Utilisateur $utilisateur, Request $request, EntityManagerInterface $manager)
     // {
     //     /* 
     //         On injecte les dépendances:
@@ -85,6 +109,8 @@ class UtilisateurController extends AbstractController
     //     */
     //     $utilisateur = new Utilisateur;
 
+        
+    //     dump($utilisateur);
     //     // $form = $this->createForm(UtilisateurType::class, $utilisateur);
 
     //     // $form->handleRequest($request);
@@ -98,7 +124,7 @@ class UtilisateurController extends AbstractController
     //     //         'formUser' => $form->createView(),
     //             // 'edit' => $utilisateur->getId()
     //     ]);
-    // }
+    //}
 
     
 }

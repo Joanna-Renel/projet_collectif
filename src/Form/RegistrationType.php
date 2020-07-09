@@ -16,9 +16,9 @@ class RegistrationType extends AbstractType
             ->add('prenom')
             ->add('nom')
             ->add('email')
-            ->add('adresse')
+            // ->add('adresse')
             ->add('password',  PasswordType::class)
-            ->add('confirm_password')
+            //->add('confirm_password')
         ;
     }
 

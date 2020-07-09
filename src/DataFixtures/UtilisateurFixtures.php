@@ -84,8 +84,8 @@ class UtilisateurFixtures extends Fixture
                             // Instanciation d'un nouvel objet DateTime contenant la date actuelle sous forme de timestamp
                             $now = new \DateTime;
 
-                            // Création des documents : type, taille, date d'ajout en BDD, date d'édition et date d'échéance
-                            $document->setType($faker->imageUrl())
+                            // Création des documents : document, taille, date d'ajout en BDD, date d'édition et date d'échéance
+                            $document->setDocument($faker->imageUrl())
 
                                     ->setTaille(($faker->randomDigitNotNull) . 'Mo')
 

@@ -13,7 +13,7 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/inscription", name="registration")
-     * @Route("/connexion/{id}", name="login")
+     * @Route("/connexion/{id}/edit", name="login")
      */
     public function register(Utilisateur $utilisateur = null, Request $request, EntityManagerInterface $manager)
     {
@@ -22,7 +22,7 @@ class RegistrationController extends AbstractController
         $form= $this->createForm(RegistrationType::class, $utilisateur);
         
         // handleRequest récupère les données du formulaire stockées dans $request
-        // et crée les seters.
+        // et crée les seters
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
@@ -47,13 +47,13 @@ class RegistrationController extends AbstractController
             // ]);
         }
 
-        // retourne le template registration.html.twig responsable de l'affichage du formulaire d'inscription/connexion.
+        // render() retourne le template registration.html.twig responsable de l'affichage du formulaire d'inscription/connexion.
         // L'indice 'formUtilisateur' utilise la méthode createView() pour stocker le formulaire qui sera renvoyé sur le template
-        // Si l'id de l'utilisateur n'est pas nul, l'indice 'login' servira à être redirigé sur son profil 
+        // Si l'id de l'utilisateur n'est pas nul, l'indice 'login' servira à être redirigé sur le profil 
         return $this->render('registration/register.html.twig', [
-            // 'controller_name' => 'RegistrationController'
+            'controller_name' => 'RegistrationController',
             'formUtilisateur'=> $form->createView(),
-            'login'=>$utilisateur->getId() !== null
+            // 'login'=>$utilisateur->getId()
             
         ]);
     }

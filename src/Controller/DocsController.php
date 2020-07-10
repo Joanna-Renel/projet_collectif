@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Docs;
+use App\Entity\Utilisateur;
 use App\Repository\DocsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,12 +22,14 @@ class DocsController extends AbstractController
         Les données récupérées seront ensuite envoyées pour affichage 
         dans la vue membre_document
     */
+
     /**
-     * @Route("membre/docs", name="docs")
+     * @Route("membre/{id}/docs", name="docs")
      */
     public function showDocs(DocsRepository $repo)
     {
 
+        // $utilisateur = new Utilisateur;
         $em = $this->getDoctrine()->getManager();
 
         $colonnes = $em->getClassMetaData(Docs::class)->getFieldNames();
@@ -37,7 +40,7 @@ class DocsController extends AbstractController
 
         return $this->render('utilisateur/membre_document.html.twig', [
             'colonnes' => $colonnes,
-            'documents' => $documents,
+            'documents' => $documents
         ]);
     }
 

@@ -34,7 +34,7 @@
         <table class="table table-border">
 
             <thead>
-                <th>Type</th>
+                <th>Document</th>
                 <th>Taille</th>
                 <th>Date d'édition</th>
                 <th>Date d'échéance</th>
@@ -42,18 +42,15 @@
                 <th>Prolonger</th>
             </thead>
 
-           {# {% for document in documents %}
-                
+            {% for document in documents %}            
             <tbody>
                 <tr>
-                    <td>{{ document.type}}</td>
-                    <td>{{ document.taille}}</td>
-                    <td>{{ document.date_echeance}}</td>
-                    <td>{{ document.type}}</td>
+                    <td>{{ document.document }}</td>
+                    <td>{{ document.taille }}</td>
                     <td><a class="btn btn-danger" href=""><i class="far fa-trash-alt"></i>Supprimer</a></td>
                 </tr>
             </tbody>
-            {% endfor %} #}
+            {% endfor %} 
 
             
         </table>

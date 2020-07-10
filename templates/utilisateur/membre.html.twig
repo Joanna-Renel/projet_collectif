@@ -1,28 +1,23 @@
-{% extends "membre/index.html.twig" %}
+{% extends "utilisateur/index.html.twig" %}
+
+{% form_theme formUser 'bootstrap_4_layout.html.twig' %}
 
 {% block main %}
-
-{% for data in utilisateur %} 
-<h1 class="text-center"> Bienvenue dans votre espace, {{ utilisateur.prenom }} !</h1>
 
 <div class="row col-md-12">
 
     <div class="col-md-7">
           
-        {# #}
-        {{ form(formUser) }}
+        
+       {# {{ form(formUser) }} #}
              {{ form_start(formUser, {'attr':{'class':'col-md-6 mx-auto'}}) }}
 
-            {{ form_row(formUser.prenom, {'attr': {'value':'{{ value }}' }})}}
-            {{ form_widget(formUser.prenom) }}
+            {# {{ form_row(formUser.prenom) }} #}
 
-            {{ form_row(formUser.nom )}}
-            {{ form_widget(formUser.nom) }}
-            {{ form_row(formUser.email ) }}
-            {{ form_widget(formUser.email) }}
+            {{ form_row(formUser.nom) }}
+            {{ form_row(formUser.email) }}
 
             {{ form_row(formUser.adresse) }}
-            {{ form_widget(formUser.adresse) }}
 
             
             {{ form_end(formUser) }} 
@@ -31,7 +26,7 @@
         <form class=" col-md-6 mx-auto" action="" method="post"> 
             <div class="form-group">
                 <label for="_username"> Email : </label>
-                <input class="form-control" type="text" value="{{ value }}" name="_username" id="_username">
+                <input class="form-control" type="text" value="" name="_username" id="_username">
             </div>
 
             <div class="form-group d-flex">

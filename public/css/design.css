@@ -29,24 +29,38 @@ ul li{
 
 }
 
+.guillemets{
+    width: 80px;
+}
+
+
 .navigation
 {
     background:#eefdee;
+
 }
 
-.menu li a{
+.menu li{
+     list-style-type: none;
+}
+
+
+
+.menu li a
+{   
+    font-weight: bold;
+    list-style-type: none;
     color: #4ab64a;
     padding-top:50px;
     position: center;
-    list-style-type:none;
     display: inline;
-    padding-right: 20px;
+    padding-right: 70px;
     margin: 50px;
-
 }
 
 
-.footer{
+.footer
+{
     background:#323232;
     height: 120px;
     
@@ -61,14 +75,9 @@ ul li{
     color:#323232;
 }
 
-
-.navaraccueil, .navbarservices, .navbarapropos{
-    color: #4ab64a
-}
-
 .logo
 {
-    width: 100px;
+    width: 200px;
    
 }
 
@@ -83,10 +92,9 @@ html{
 
 .navigation li{
       font-size: 25px;
-      color:#323232;
+      color:#323232;g
 
 }
-
 
 
 .footer, li{
@@ -109,9 +117,7 @@ body{
     display: inline;
     padding-right: 30px;
     margin: 50px;
-    position:  center
-
-    
+    position:  center 
  }
 
 
@@ -125,12 +131,9 @@ body{
      font-size: 20px;
  
  }
-
- 
-
- .coordonnees ul{
-margin-top: 70px;;
-
+ .coordonnees ul
+ {
+margin-top: 70px;
 
  }
 

@@ -20,7 +20,7 @@ class Docs
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
+    private $document;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -53,14 +53,14 @@ class Docs
         return $this->id;
     }
 
-    public function getType(): ?string
+    public function getDocument(): ?string
     {
-        return $this->type;
+        return $this->document;
     }
 
-    public function setType(string $type): self
+    public function setDocument(string $document): self
     {
-        $this->type = $type;
+        $this->type = $document;
 
         return $this;
     }

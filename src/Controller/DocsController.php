@@ -55,7 +55,6 @@ class DocsController extends AbstractController
 
         $manager->persist($document);
 
-
         $manager->flush();
 
         return $this->render('membre/membre_document.html.twig');

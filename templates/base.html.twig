@@ -11,7 +11,7 @@
   
   <link href=" https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap " rel="stylesheet ">
   <link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css " integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk " crossorigin="anonymous ">
-
+  <link rel = “stylesheet” href = ” path / to / font -awesome / css / font – awesome.min.css ” >
   <link rel="stylesheet " href="{{ asset( 'css/design.css') }} "> {# asset() :  dossier 'public' et permettant de générer une URL jusqu'au fichier style.css #}
    {% endblock %}
  
@@ -25,21 +25,25 @@
 
 
    <div class="collapse navbar-collapse " id="navbarSupportedContent ">
-    <ul class="mr-auto menu  d-flex text-center ">
+    <ul class="mr-auto navbar  d-flex text-center ">
 
-      <li class="nav-menu">
-        <a class="nav" href="# ">DOCX
+      <li class="menu">
+        <a class="nav" href="# "> DOCX
           <span class="sr-only ">(current)</span>
         </a>
       </li>
 
-      <div class="logo "> 
-        <img src="{{asset( 'photos/logo.png')}} ">
 
-      </li>
+      <div class="logo"> 
+        <img src="{{asset('photos/logo.png')}} ">
+      </div>   
+
+       <li class="menu">
+        <a class="nav" href="">ACCUEIL</a>
+      </li
 
       <li class="menu">
-        <a class="nav" href="# ">SERVICES</a>
+        <a class="nav" href="{{ path('service') }} ">SERVICES</a>
       </li>
 
       <li class="menu">
@@ -55,29 +59,32 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">S'inscrire</a>
-          <a class="dropdown-item" href="#">Se connecter</a>
-          <div class="dropdown-divider"></div>
+         
+          <a class="dropdown-item" href="#">Se connecter</a>      
+        <div class="dropdown-divider"></div>
         </div>
-
       </li>     
 </nav>
 
+<section class="container-fluid ">
 
-<div class="guillemets">   ❞  </div>
+<div class="blockquote">  
 
-    <p>  ?A testimonial is person's written or spoken statement extolling the virtue of a product ❞  ?
-</blockquote>
+ <p>  ❞  ?A testimonial is person's written or spoken statement extolling the virtue of a product ❞  ? </p>
+
+</div>
 
 
 
-<section class="container mon-conteneur ">{% block body %} {% endblock %}</section>
+</section>
+
 <footer class=" footer text-center ">
       <ul style="list-style-type:disc " class="coordonnees mt-5 ">
         <li><a href=" ">CONTACT</a></li>
         <li>RESEAUX SOCIAUX</li>
         <li>RGPD</li>
       </ul>
-  </div>
+
 
 </footer>{% block javascripts %}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>

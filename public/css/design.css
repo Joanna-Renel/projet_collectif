@@ -1,8 +1,38 @@
+
+#carousel{
+    float:center;
+    margin-top:-91px;
+    margin-left:200px;
+}
+
+footer{
+    
+    position:absolute;
+    padding:0;
+    bottom:0; 
+    
+    Right:0;
+    width:100%;
+    height:50px;
+    
+    }
+
+.blockquote{
+    margin: 120px;
+    font-size:1,25rem;
+   
+}
+
+
+ul li{
+    list-style-type:none;
+
+}
+
 .guillemets{
     width: 80px;
 }
 
- 
 
 .navigation
 {
@@ -21,7 +51,7 @@
     font-weight: bold;
     list-style-type: none;
     color: #4ab64a;
-    padding-top:70px;
+    padding-top:50px;
     position: center;
     display: inline;
     padding-right: 70px;
@@ -67,8 +97,6 @@ html{
 }
 
 
-
-
 .footer, li{
       color:  #4ab64a;
       padding-top: 10px;
@@ -89,9 +117,7 @@ body{
     display: inline;
     padding-right: 30px;
     margin: 50px;
-    position:  center
-
-    
+    position:  center 
  }
 
 

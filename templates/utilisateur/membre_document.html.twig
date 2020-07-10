@@ -1,40 +1,65 @@
-{% extends "base.html.twig" %}
+{% extends "utilisateur/index.html.twig" %}
 
-{% block body %}
+{% block main %}
 
     <h1 class="display-4 text-center">Mes documents</h1>
 
-    <div class="col-md-10">
+    <div class="col-md-9">    
+        <div class="">
+            <form class="" action="" method="post" enctype="multipart/form-data"> 
+                
+                <div class="row">
+                    <div class="col">
+                        <select name="type" id="typeDoc" class="custom-select">
+                            <option placeholder="Type document" selected>
+                                {% for data in colonnes %}
+                                {{ data == 1 }}
+                                {% endfor %}
+                            </option>
+                        </select>
+                    </div>
 
-        <div class="form-group">
-            <form class=" col-md-6 mx-auto" action="" method="post" enctype="data"> 
+                    <div class="col custom-file">
+                        <input class="form-control" type="file" name="document" id="document">
+                    </div>
 
-                <select name="type" id="typeDoc">
-                    <option value="Type document">{#{{ data.type }}#} </option>
-                </select>
-                <input class="form-control" type="file" name="document" id="document">
-                <button class="btn">Ajouter</button>
+                    <div class="col">
+                        <button type="submit" class="btn btn-danger">Ajouter document</button>
+                    </div>
+
+                </div>
             </form>
         </div>
-
+            
         <table class="table table-border">
 
             <thead>
+                <th>Type</th>
+                <th>Taille</th>
+                <th>Date d'édition</th>
+                <th>Date d'échéance</th>
                 <th>Supprimer</th>
                 <th>Prolonger</th>
             </thead>
 
+           {# {% for document in documents %}
+                
             <tbody>
                 <tr>
-                    <td></td>
+                    <td>{{ document.type}}</td>
+                    <td>{{ document.taille}}</td>
+                    <td>{{ document.}}</td>
+                    <td>{{ document.type}}</td>
                     <td class="fa far-del"></td>
                     <td>Prolonger</td>
                 </tr>
             </tbody>
+            {% endfor %} #}
+
             
         </table>
+
+
     </div>
    
-
-
 {% endblock %}

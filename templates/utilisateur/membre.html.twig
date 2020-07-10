@@ -2,44 +2,42 @@
 
 {% block main %}
 
-{# {% for data in utilisateur %} #}
+{% for data in utilisateur %} 
 <h1 class="text-center"> Bienvenue dans votre espace, {{ utilisateur.prenom }} !</h1>
 
 <div class="row col-md-12">
 
-   
-
     <div class="col-md-7">
-
-
-            
-            {# {{ form_start(formUser, {'attr':{'class':'col-md-6 mx-auto'}}) }}
+          
+        {# #}
+        {{ form(formUser) }}
+             {{ form_start(formUser, {'attr':{'class':'col-md-6 mx-auto'}}) }}
 
             {{ form_row(formUser.prenom, {'attr': {'value':'{{ value }}' }})}}
+            {{ form_widget(formUser.prenom) }}
+
             {{ form_row(formUser.nom )}}
-            {{ form_row(formUser.email )}}
-            {{ form_row(formUser.adresse )}}
+            {{ form_widget(formUser.nom) }}
+            {{ form_row(formUser.email ) }}
+            {{ form_widget(formUser.email) }}
 
-            <div id="password">
+            {{ form_row(formUser.adresse) }}
+            {{ form_widget(formUser.adresse) }}
 
-            </div>
-            <div class="form-group">
-                <label for="_password"> Mot de passe : </label>
-                <input class="form-control" type="text" name="_password" id="_password" value="{{ value }}">
-            </div>
             
-            {{ form_end(formUser) }} #}
+            {{ form_end(formUser) }} 
           
 
-        <form class=" col-md-6 mx-auto" action="" method="post" enctype="data"> 
+        <form class=" col-md-6 mx-auto" action="" method="post"> 
             <div class="form-group">
                 <label for="_username"> Email : </label>
                 <input class="form-control" type="text" value="{{ value }}" name="_username" id="_username">
             </div>
 
             <div class="form-group d-flex">
-                <button class="btn" style="border-radius: 50px;"><a href="#">Modifier mot de passe</a></button>
+                <button class="btn" style="border-radius: 50%;"><a href="#">Modifier mot de passe</a></button>
             </div>
+
             <button class="mt-5 text-left" type="submit" class="btn btn-dark">Enregistrer les modifications</button>
 
         </form>

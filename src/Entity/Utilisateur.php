@@ -49,12 +49,13 @@ class Utilisateur
      */
     private $password;
 
+
     public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $premium;
+    private $premium = 'non';
 
     /**
      * @ORM\Column(type="json")

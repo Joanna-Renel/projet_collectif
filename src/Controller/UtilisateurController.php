@@ -17,7 +17,7 @@ class UtilisateurController extends AbstractController
      * @Route("/membre", name="membre")
      * @Route("membre/{id}/update", name="membre_update")
      */
-    public function home(Utilisateur $utilisateur, Request $request, EntityManagerInterface $manager, UtilisateurRepository $repo, $id)
+    public function home(Utilisateur $utilisateur = null, Request $request, EntityManagerInterface $manager, UtilisateurRepository $repo)
     {
         /* 
             On injecte les dépendances:
@@ -37,15 +37,15 @@ class UtilisateurController extends AbstractController
             Les données du formulaire seront récupérées via l'objet $request qui contient
             les infos du formulaire
 
-
+            $user = $this->getUser();
         */
 
-        $utilisateur = $repo->find($id);
+        // $utilisateur = $repo->find($id);
 
-        if(!$utilisateur)
-        {
-            return $this->redirectToRoute('registration/login.html.twig');
-        }
+        // if(!$utilisateur)
+        // {
+        //     return $this->redirectToRoute('registration');
+        // }
 
         dump($utilisateur);
 
@@ -57,7 +57,7 @@ class UtilisateurController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $utilisateur = $form->getData();
+            $utilisateur = new Utilisateur;
             // $form->getData() stocke les valeurs renseignées dans le formulaire
             // et les met à jour (fais la même chose que $manager->persist() et ->flush())
             $manager->persist($utilisateur);
@@ -71,7 +71,7 @@ class UtilisateurController extends AbstractController
 
         return $this->render('utilisateur/membre.html.twig', [
                 'formUser' => $form->createView(),
-                'utilisateur' => $utilisateur->getId()
+                'utilisateur' => $utilisateur 
         ]);
     }
 

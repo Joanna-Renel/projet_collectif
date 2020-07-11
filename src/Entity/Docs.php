@@ -60,7 +60,7 @@ class Docs
 
     public function setDocument(string $document): self
     {
-        $this->type = $document;
+        $this->document = $document;
 
         return $this;
     }

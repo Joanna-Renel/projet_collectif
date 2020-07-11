@@ -2,11 +2,11 @@
 
 {% block body %}
 
-<h1 class="text-center"> Bienvenue dans votre espace,  !</h1>
+{#<h1 class="text-center"> Bienvenue dans votre espace, {{ utilisateur.prenom}} !</h1>#}
 
 <div class="row col-md-12">
 
-    <div class="col-md-3">
+    <div class="col-md-3 ml-3">
 
         <ul class="navbar-nav ">
           
@@ -15,7 +15,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="path('membre/docs') }}">Mes documents</a>
+              <a class="nav-link" href="">Mes documents</a>
             </li>
 
             <div class="whitespace mt-3"></div>
@@ -32,9 +32,9 @@
 
         <div class="whitespace mt-5"></div>
 
-        <button class="btn"><a href="path('service') }}">Je m'abonne à Docx + </a> </button>
+        <button class="btn align-left"><a href="path('service') }}">Je m'abonne à Docx + </a> </button>
 
-        <button class="btn"><a href="path('logout') }}">Supprimer mon compte</a></button>   
+        <button class="btn align-left"><a href="path('logout') }}">Supprimer mon compte</a></button>   
 
     </div> 
 

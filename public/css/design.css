@@ -1,28 +1,101 @@
+
+#carousel{
+    margin-top:120px;
+    margin-left: 544px;
+
+}
+
+.mr-auto menu {
+    position: top;
+	border-top: 108px;
+	box-shadow: 0 1px 2px;
+	border-radius:4px;
+	padding:20px 25px;
+	margin:50px 0 25px 0;
+}
+
+li .menu{
+
+text-align:center;
+margin-left: 76px;
+display: inline;
+list-style: none;
+color: #4ab64a;
+
+}
+
+
+#carousel{
+    float:center;
+    margin-top:-91px;
+    margin-left:200px;
+}
+
+footer{
+    
+    position:absolute;
+    padding:0
+    bottom:0; 
+    
+    Right:0;
+    width:100%;
+    height:50px;
+    
+    }
+
+.blockquote{
+    margin: 120px;
+    font-size:1,25rem;
+   
+}
+
+
+ul li{
+    list-style-type:none;
+    display:inline-block; 
+    margin-left: 12px;
+
+}
+
+.guillemets{
+    width: 80px;
+}
+
+
 .navigation
 {
     background:#eefdee;
+
 }
 
-.menu li a{
+.menu li{
+     list-style-type: none;
+}
+
+
+
+.menu li a
+{   
+    font-weight: bold;
+    list-style-type: none;
     color: #4ab64a;
-    padding-top:70px;
+    padding-top:50px;
     position: center;
-    list-style-type:none;
-    display: inline;
-    padding-right: 20px;
+    display: inline
+    padding-right: 70px;
     margin: 50px;
-
 }
 
 
-.footer{
+.footer
+{
     background:#323232;
     height: 120px;
     
 }
 .coordonnees li a{
     color: #4ab64a;
-    margin-top: 100px;;
+    margin-top: 100px;
 
 }
 
@@ -30,14 +103,9 @@
     color:#323232;
 }
 
-
-.navaraccueil, .navbarservices, .navbarapropos{
-    color: #4ab64a
-}
-
 .logo
 {
-    width: 100px;
+    width: 200px;
    
 }
 
@@ -56,10 +124,6 @@ html{
 
 }
 
-.footer li:before {content: "•";
-   padding: 10px;
-
-}
 
 .footer, li{
       color:  #4ab64a;
@@ -81,9 +145,7 @@ body{
     display: inline;
     padding-right: 30px;
     margin: 50px;
-    position:  center
-
-    
+    position:  center 
  }
 
 
@@ -97,12 +159,9 @@ body{
      font-size: 20px;
  
  }
-
- 
-
- .coordonnees ul{
-margin-top: 70px;;
-
+ .coordonnees ul
+ {
+margin-top: 70px;
 
  }
 

@@ -1,14 +1,44 @@
 
 #carousel{
-    /* float:center;
-    margin-top:-91px; */
+
+    float:center;
+    margin-top:-91px;
+
+    margin-top:120px;
+    margin-left: 544px;
+
+}
+
+.mr-auto menu {
+    position: top;
+	border-top: 108px;
+	box-shadow: 0 1px 2px;
+	border-radius:4px;
+	padding:20px 25px;
+	margin:50px 0 25px 0;
+}
+
+li .menu{
+
+text-align:center;
+margin-left: 76px;
+display: inline;
+list-style: none;
+color: #4ab64a;
+
+}
+
+
+#carousel{
+    float:center;
+    margin-top:-91px;
     margin-left:200px;
 }
 
 footer{
     
     position:absolute;
-    padding:0;
+    padding:0
     bottom:0; 
     
     Right:0;
@@ -26,6 +56,8 @@ footer{
 
 ul li{
     list-style-type:none;
+    display:inline-block; 
+    margin-left: 12px;
 
 }
 
@@ -53,9 +85,9 @@ ul li{
     color: #4ab64a;
     padding-top:50px;
     position: center;
-    display: inline;
-    padding-right: 70px;
-    margin: 50px;
+    display: inline
+/*     padding-right: 70px;
+    margin: 50px;*/
 }
 
 
@@ -67,7 +99,7 @@ ul li{
 }
 .coordonnees li a{
     color: #4ab64a;
-    margin-top: 100px;;
+    margin-top: 100px;
 
 }
 
@@ -86,13 +118,13 @@ ul li{
 }
 
 html{
-    font-family: anonymous pro;
+    font-family: courier;
 
 }
 
 .navigation li{
       font-size: 25px;
-      color:#323232;g
+      color:#323232;
 
 }
 

@@ -5,32 +5,28 @@
   <h1 class="display-4 text-center my-4">S'inscrire</h1>
 
 
-    {{ form_start(formUtilisateur, {'attr': {'class': 'col-md-7 mx-auto'}}) }}
+    {{ form_start(formInscription, {'attr': {'class': 'col-md-7 mx-auto'}}) }}
 
-      {{ form_row(formUtilisateur.prenom, {'attr': {'placeholder': "Prénom"}}) }}
+      {{ form_row(formInscription.prenom, {'label': 'Prénom', 'attr': {'placeholder': "Prénom"}}) }}
 
-      {{ form_row(formUtilisateur.nom, {'attr': {'placeholder': "Nom"}}) }}
+      {{ form_row(formInscription.nom, {'label': 'Nom', 'attr': {'placeholder': "Nom"}}) }}
 
-      {{ form_row(formUtilisateur.username, {'attr': {'placeholder': "Identifiant"}}) }}
+      {{ form_row(formInscription.username, {'label': 'Identifiant', 'attr': {'placeholder': "Identifiant"}}) }}
 
+      {{ form_row(formInscription.adresse, {'label': 'Adresse', 'attr': {'placeholder': "Adresse"}}) }}
 
-      {{ form_row(formUtilisateur.adresse, {'attr': {'placeholder': "Identifiant"}}) }}
+      {{ form_row(formInscription.email, {'label': 'Email', 'attr': {'placeholder': "Entrez votre adresse email"}}) }}
 
-    {{ form_row(formUtilisateur.username, {'attr': {'placeholder': "Identifiant"}}) }}
+      {{ form_row(formInscription.password, {'label': 'Mot de passe', 'attr': {'placeholder': "Entrez votre mot de passe"}}) }}
 
-
-      {{ form_row(formUtilisateur.email, {'attr': {'placeholder': "Entrez votre adresse email"}}) }}
-
-      {{ form_row(formUtilisateur.password, {'attr': {'placeholder': "Entrez votre mot de passe"}}) }}
-
-      {{ form_row(formUtilisateur.confirm_password, {'attr': {'placeholder': "Confirmez votre mot de passe"}}) }}
+      {{ form_row(formInscription.confirm_password, {'label': 'Confirmez votre mot de passe', 'attr': {'placeholder': "Confirmez votre mot de passe"}}) }}
 
 
           {# Remplacer la couleur du bouton #}
           <button type="submit" class="btn btn-info mb-5">S'inscrire</button>
 
       
-    {{ form_end(formUtilisateur) }}
+    {{ form_end(formInscription) }}
 
 
 

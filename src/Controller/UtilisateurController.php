@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UtilisateurController extends AbstractController
 {
     /**
-     * @Route("/membre", name="membre")
+     * @Route("/membre/{id}", name="membre")
      * @Route("membre/{id}/update", name="membre_update")
      */
     public function home(Utilisateur $utilisateur = null, Request $request, EntityManagerInterface $manager, UtilisateurRepository $repo)
@@ -52,30 +52,67 @@ class UtilisateurController extends AbstractController
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
 
         $form->handleRequest($request);
-        
-        dump($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $utilisateur = new Utilisateur;
-            // $form->getData() stocke les valeurs renseignées dans le formulaire
+            $utilisateur = $form->getData() ;
+            
+            //stocke les valeurs renseignées dans le formulaire
             // et les met à jour (fais la même chose que $manager->persist() et ->flush())
+
             $manager->persist($utilisateur);
             $manager->flush();
 
-            return $this->redirectToRoute('membre', [
-                'id' => $utilisateur->getId()
+            $this->addFlash('success', 'Vos modifications ont bien été prises en compte');
+
+            return $this->redirectToRoute('membre_update', [
+                'id' => $utilisateur->getId(),
             ]);
 
         }
 
         return $this->render('utilisateur/membre.html.twig', [
-                'formUser' => $form->createView(),
-                'utilisateur' => $utilisateur 
-        ]);
+            'formUser' => $form->createView(),
+            'utilisateur' => $utilisateur ,
+    ]);
+
+
+    
     }
 
 
+    /**
+     * @Route("membre/{id}/update", name="membre_update")
+     */
+    public function update(Utilisateur $utilisateur, Request $request, EntityManagerInterface $manager)
+    {
+    
+        $form = $this->createForm(UtilisateurType::class, $utilisateur);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {            
+            
+            $manager->persist($utilisateur);
+            $manager->flush();
+
+            $this->addFlash('success', 'Vos modifications ont bien été prises en compte');
+
+            return $this->redirectToRoute('membre_update');
+
+        }
+
+        return $this->render('utilisateur/membre.html.twig', [
+            'formUser' => $form->createView(),
+            'utilisateur' => $utilisateur ,
+
+            
+    ]);
+
+
+    
+    }
 
    
     // /**

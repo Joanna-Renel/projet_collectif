@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{# Ce template permet d'afficher un formulaire de contact et est géré par le controller ContactNotification
+dans src/Notification/ContactNotification.php #}
+{% endblock %}
+
+{% block body %}
+
+    {# app est une variable TWIG qui contient toutes les informations liées à la session en cours #}
+    {# Les messages utilisateurs sont conservés en session. #}
+    {# On boucle puisqu'il peut y avoir plusieurs messages utilisateur #}
+    {# les messages sont accessibles via la fonction flashes() de l'objet app #}
+    {# 'success' représente l'identifiant du message utilisateur définit dans le contrôleur 'SecurityController' (addFlash()) #}
+    {# 'message' => variable de reception qui receptionne un message utilisateur par tour de boucle. Ce message 'success'
+    provient du Home_Controller l.53 #}
+                
+    <h1 class="display-4 text-center my-4">Contactez-nous</h1>
+
+        {% for message in app.flashes('success') %}
+
+                    <div class="col-md-5 mx-auto alert alert-success text-center">
+                    {{ message }}
+                    </div>
+
+        {% endfor %}
+
+        {{ form_start(formContact, {'attr': {'class': 'col-md-7 mx-auto'}}) }}
+
+            {{ form_row(formContact.firstname, {'label': 'Prénom', 'attr': {'placeholder': "Prénom"}}) }} 
+            
+            {{ form_row(formContact.lastname, {'label': 'Nom', 'attr': {'placeholder': "Nom"}}) }}
+
+            {{ form_row(formContact.phone, {'label': 'Téléphone', 'attr': {'placeholder': "Téléphone"}}) }}
+
+            {{ form_row(formContact.email, {'label': 'Email', 'attr': {'placeholder': "Email"}}) }}
+
+            {{ form_row(formContact.message, {'label': 'Votre message', 'attr': {'placeholder': "Dites-nous tout" , "rows" : 15}}) }}
+
+            
+            <button type="submit" class="btn btn-info mb-3">Contactez-nous</button> 
+            
+        {{ form_end(formContact) }}
+        
+
+
+{% endblock %}

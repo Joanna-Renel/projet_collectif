@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 {% block body %}
 
@@ -26,5 +27,31 @@
 
      
 
+=======
+{% extends 'base.html.twig' %}
+
+{% block title %} Services Docx +{% endblock %}
+
+{% block body %}
+
+    <h1 class="display-4 text-center my-4">Laissez un commentaire</h1>
+
+    {# Si l'utilisateur est connecté, affichage du formulaire pour enregistrer un commentaire #}
+    {% if app.user %}
+
+        {{ form_start(formCommentaire) }}
+
+            {{ form_row(formCommentaire.pseudo, {'label': 'Pseudo', 'attr': {'placeholder': "Votre nom"}}) }} 
+            
+            {{ form_row(formCommentaire.commentaire, {'label': 'Votre message', 'attr': {'placeholder': "Votre commentaire"}}) }} 
+            
+            <button type="submit" class="btn btn-info mb-3">Enregistrez votre commentaire</button> 
+            
+        {{ form_end(formCommentaire) }}
+        
+    {% endif %}
+
+
+>>>>>>> effa4a73942190a4e759b6291a100c0c5cc171fa
 {% endblock %}
 

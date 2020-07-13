@@ -1,0 +1,59 @@
+{% extends "base.html.twig"%}
+
+{% block body %}
+
+    {# app est une variable TWIG qui contient toutes les informations liées à la session en cours #}
+    {# Les messages utilisateurs sont conservés en session. #}
+    {# On boucle puisqu'il peut y avoir plusieurs messages utilisateur #}
+    {# les messages sont accessibles via la fonction flashes() de l'objet app #}
+    {# 'success' représente l'identifiant du message utilisateur définit dans le contrôleur 'SecurityController' (addFlash()) #}
+    {# 'message' => variable de reception qui receptionne un message utilisateur par tour de boucle. Ce message 'success'
+    provient du Security_Controller l.70 #}
+
+    {# {% if (message in app.flashes('success')) %}
+
+        <div class="col-md-6 mt-4 mx-auto bg-success rounded text-white text-center p-2">
+            {{ message }}
+        </div>
+
+    {% endif %} #}
+
+<h1 class="display-4 text-center my-4">Se connecter</h1>
+
+
+    {# On entre dans la condition if si l'internaute a saisi de mauvais identifiants #}
+    {% if error %}
+
+      <div class="bg-danger text-white text-center p-3 col-md-4 mx-auto rounded">
+        {# trans est un filtre qui permet de traduire le message d'erreur 'Invalid credentials.' prédéfini par Symfony #}
+        {# Ce message est traduit dans config > packages > translations > security.en.php #}
+        {{ error.messageKey|trans(error.messageData, 'login') }}
+      </div>
+
+    {% endif %}
+
+
+    {# L'attribut action contient la route permettant de se connecter {{ path('login') }}? Il permet de préciser à Symfony qu'il doit contrôler les données du formulaire sur la route 'login'
+    qui a été indiquée dans le fichier security.yaml (cf check_path dans config > packages  > security.yaml).
+
+    Symfony utilise les attributs name spécifiques '_username' et '_password' pour aller contrôler les données en BDD 
+    Sans ces attributs, la vérification des données est impossible. #}
+
+    <form method="post" action="{{ path('login') }}" class="col-md-5 mx-auto">
+
+      <div class="form-group">
+        <label for="_username">Email</label>
+        <input type="text" class="form-control" id="_username" name="_username" value="{{ last_username }}" placeholder="Entrez votre email" required>
+        {# value=" {{ last_username }} permet de récupérer le dernier email saisi par l'internaute en cas de mauvaise connexion, afin
+        de lui éviter de le resaisir. Cette variable last.username provient de la méthode login() du RegistrationController. #}
+      </div>
+
+      <div class="form-group">
+        <label for="_password">Mot de passe</label>
+        <input type="password" class="form-control" id="_password" name="_password" placeholder="Entrez votre mot de passe" required>
+      </div>
+
+      <button type="submit" class="btn btn-info">Se connecter</button>
+    </form>
+
+{% endblock %}

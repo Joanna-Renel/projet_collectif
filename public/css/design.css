@@ -20,6 +20,10 @@
 }
 
 #carousel{
+
+    float:center;
+    margin-top:-91px;
+
     margin-top:120px;
     margin-left: 544px;
 
@@ -99,8 +103,8 @@ ul li{
     padding-top:50px;
     position: center;
     display: inline
-    padding-right: 70px;
-    margin: 50px;
+/*     padding-right: 70px;
+    margin: 50px;*/
 }
 
 
@@ -131,7 +135,7 @@ ul li{
 }
 
 html{
-    font-family: anonymous pro;
+    font-family: courier;
 
 }
 

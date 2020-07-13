@@ -2,15 +2,28 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+// L'objet UniqueEntity permet de préciser les champs qui attendent des données uniques. Ici, le champ "email".
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+ * @UniqueEntity(
+ *  fields = {"email"},
+ *  message = "Cette adresse email est déjà associée à un compte."
+ * )
+ * 
  */
-class Utilisateur
+
+ // On précise ici à Symfony qu'Utilisateur est la table contenant tous les utilisateurs du site.
+ // Pour pouvoir encoder le mot de passe, il faut que notre entité User implemente l'interface UserInterface.
+class Utilisateur implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -36,7 +49,14 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Email(
+     *  message="Cette adresse email '{{ value }}' n'est pas valide."
+     * )
      */
+
+    
+    //  On appelle l'objet Assert et on pointe sur la contrainte Email pour transformer le champ en type ="email"
+    // Cette contrainte fait en sorte que l'email que soit unique dans la BDD pour éviter les doublons.
     private $email;
 
     /**
@@ -46,15 +66,34 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit contenir 8 caractères minimum.")
+     *
      */
+    
+    // On importe l'objet Assert (cf l.7) et on pioche les méthodes Length() et EqualTo().
+    // Length est une contrainte de longueur.
+    // EqualTo est une contrainte qui requiert que la valeur du champ password soit égale à celle du champ confirm_password
+
     private $password;
+    
+    
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne correspondent pas.")
+     * 
+     */
+
+    // On ajoute une propriété public qui sera en charge de comparer le mot de passe
+    // au mot de passe renseigné dans le formulaire.
+    // Inutile d'ajouter une annotation ORM, ni d'ajouter des seters et geters
+    // car ils ne seront pas ajoutés en BDD.
 
     public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $premium;
+    // Par défaut, aucun utilisateur n'est premium.
+    private $premium = 'non';
 
     /**
      * @ORM\Column(type="json")
@@ -154,6 +193,26 @@ class Utilisateur
         return $this;
     }
 
+    /*
+        Pour pouvoir encoder le mot de passe, il faut que notre entité Utilisateur implemente l'interface UserInterface.
+        Cette interface contient des méthodes que nous sommes obligés de déclarer :
+        getPassword(), getUsername(), getRoles(), getSalt() et eraseCredentials().    
+    */
+
+    // Cette méthode est uniquement destinée à nettoyer les mots de passe en texte brut (en clair) éventuellement stockés en BDD.
+    public function eraseCredentials()
+    {
+
+    }
+
+    // Cette méthode renvoie la chaîne de caractères non encodée que l'utilisateur a saisi et qui, à l'origine,
+    // a été utilisée pour encoder le mot de passe. 
+    public function getSalt()
+    {
+
+    }
+
+
     public function getPremium(): ?string
     {
         return $this->premium;
@@ -166,9 +225,15 @@ class Utilisateur
         return $this;
     }
 
+    
+    // Cette méthode renvoie un tableau de chaînes de caractères où sont stockés les rôles(droits) accordés à l'utilisateur.
     public function getRoles(): ?array
     {
-        return $this->roles;
+            // Cette méthide ne retourne que les ROLE_USER de la BDD. Les administrateurs n'ont pas accès au site car ils ont un ROLE_ADMIN
+            // qui n'est pas retourné par cette méthode.
+            
+            return ['ROLE_USER'];
+
     }
 
     public function setRoles(array $roles): self

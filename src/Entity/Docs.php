@@ -55,12 +55,12 @@ class Docs
 
     public function getDocument(): ?string
     {
-        return $this->document;
+        return $this->document = $document;
     }
 
     public function setDocument(string $document): self
     {
-        $this->type = $document;
+        $this->document = $document;
 
         return $this;
     }

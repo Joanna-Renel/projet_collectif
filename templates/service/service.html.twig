@@ -39,7 +39,7 @@
     {# Si l'utilisateur est connecté, affichage du formulaire pour enregistrer un commentaire #}
     {% if app.user %}
 
-        {{ form_start(formCommentaire) }}
+        {{ form_start(formCommentaire, {'attr': {'class': 'col-md-7 mx-auto'}})) }}
 
             {{ form_row(formCommentaire.pseudo, {'label': 'Pseudo', 'attr': {'placeholder': "Votre nom"}}) }} 
             

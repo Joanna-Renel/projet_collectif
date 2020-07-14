@@ -1,0 +1,15 @@
+Police: Anonymous Pro 
+Taille font liens navigation: 25px
+Taille font logo DOCX: 50px
+Taille font footer : 19px
+
+bas de page/footer lorsqu'on clique:
+font-size menu : 50px
+font-size détails: 15px
+
+Couleur: 
+pastel:  #eefdee
+vert : #4ab64a
+dark gray: #323232
+
+Barre de navigation qui disparaît quand on défile sur le site et lorsqu'on clique sur le lien de la page

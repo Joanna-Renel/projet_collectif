@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\DocsRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DocsRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=DocsRepository::class)
+ * @Vich\Uploadable
  */
 class Docs
 {
@@ -21,6 +26,12 @@ class Docs
      * @ORM\Column(type="string", length=255)
      */
     private $document;
+
+    // Ajout de la propriété qui permettra de stocker le document téléchargé
+    /**
+     * @Vich\UploadableField(mapping="doc_file", fileNameProperty="file")
+     */
+    private $docFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -55,10 +66,10 @@ class Docs
 
     public function getDocument(): ?string
     {
-        return $this->document = $document;
+        return $this->document;
     }
 
-    public function setDocument(string $document): self
+    public function setDocument(?string $document): self
     {
         $this->document = $document;
 
@@ -121,6 +132,23 @@ class Docs
     public function setUtilisateur(?Utilisateur $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getDocFile(): ?File 
+    {
+        return $this->docFile;
+    }
+
+    public function setDocFile(?File $docFile = null): self
+    {
+        $this->docFile = $docFile;
+
+        if($this->docFile instanceof UploadedFile)
+        {
+            $this->updated_at = new \DateTime('now');
+        }
 
         return $this;
     }

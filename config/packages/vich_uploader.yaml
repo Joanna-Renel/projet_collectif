@@ -1,0 +1,10 @@
+vich_uploader:
+
+  db_driver: orm
+
+  mappings:
+    doc_file:
+      uri_prefix: /docs
+      upload_destination: '%kernel.project_dir%/public/docs'
+      namer: Vich\UploaderBundle\Naming\UniqidNamer
+

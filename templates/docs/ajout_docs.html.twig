@@ -1,0 +1,46 @@
+{% extends "utilisateur/index.html.twig" %}
+
+{% form_theme formDoc 'bootstrap_4_layout.html.twig' %}
+
+{% block main %}
+<div class="col">    
+
+    <h1 class="display-4 text-center">Ajouter des documents</h1>
+
+        <div class="row mt-3 mx-auto">
+
+            {{ form_start(formDoc, {'attr':{'class':'mx-auto'}}) }}
+
+                <form class="" action="" method="post" enctype="multipart/form-data"> 
+                    
+                    <div class="">
+                        <select name="type" id="typeDoc" class="custom-select">
+                            <option placeholder="Type document" selected>
+                                {# {% for data in colonnes %}
+                                {{ data == 1 }}
+                                {% endfor %} #}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+
+                        {{ form_row(formDoc.docFile, {label:'choisir document '},{'attr':{'label':'choisir','class':'mx-auto'}}) }}
+                        {{ form_row(formDoc.date_edition, {'attr':{'class':'mx-auto'}}) }}
+                        
+                    </div>
+
+                    {# <div class="col custom-file">
+                        <input class="form-control" type="file" name="document" id="document">
+                    </div> #}
+
+                    <div class="">
+                        <button type="submit" class="btn btn-success">Ajouter document</button>
+                    </div>
+
+                </form>
+                
+            {{ form_end(formDoc) }}   
+
+        </div>
+{% endblock %}

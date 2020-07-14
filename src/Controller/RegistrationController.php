@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
             $utilisateur->setPassword($hash);
 -
             // On affecte un ROLE_USER par défaut à chaque nouvel inscrit sur le site. Il n'aura donc pas accès au back office.
-            // $utilisateur->setroles(["ROLE_USER"]);
+            $utilisateur->setroles(["ROLE_USER"]);
 
             // Préparation et stockage de la requête d'insertion en BDD
             $manager->persist($utilisateur);
@@ -83,26 +83,29 @@ class RegistrationController extends AbstractController
 
      // La méthode login() affiche le formulaire de connexion qui permet de se connecter à son profil sur Docx.
      public function login(AuthenticationUtils $authenticationUtils) : Response
-     {
-        
-        // AuthenticationUtils est une classe prédéfinie en Symfony qui contient des méthodes qui renvoient un message d'erreur en cas de mauvaise connexion
-        // (si l'internaute a saisi des identifiants incorrects au moment de la connexion).
-        
-        // $error affiche le message d'erreur
-        $error = $authenticationUtils->getLastAuthenticationError();
+     {      
+            $utilisateur = new Utilisateur;
 
-        
-        // Elle permet aussi de récupérer le dernier username (email) renseigné par l'internaute en cas d'erreur de connexion.
-        $lastUsername = $authenticationUtils->getLastUsername();
+            // AuthenticationUtils est une classe prédéfinie en Symfony qui contient des méthodes qui renvoient un message d'erreur en cas de mauvaise connexion
+            // (si l'internaute a saisi des identifiants incorrects au moment de la connexion).
+            
+            // $error affiche le message d'erreur
+            $error = $authenticationUtils->getLastAuthenticationError();
 
-        // Redirection vers l'espace personnel du membre quand l'inscription a été réalisée.
-        // return $this->redirectToRoute('membre');
+            
+            // Elle permet aussi de récupérer le dernier username (email) renseigné par l'internaute en cas d'erreur de connexion.
+            $lastUsername = $authenticationUtils->getLastUsername();
 
-        // On envoie le message d'erreur et le dernier email saisi sur le template responsable de l'affichage du formulaire de connexion.
-        return $this->render('registration/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error
-        ]);
+            // Redirection vers l'espace personnel du membre quand l'inscription a été réalisée.
+            // return $this->redirectToRoute("membre", [
+            //     'id' => $utilisateur->getId()
+            // ]);
+    
+            // On envoie le message d'erreur et le dernier email saisi sur le template responsable de l'affichage du formulaire de connexion.
+            return $this->render('registration/login.html.twig', [
+                'last_username' => $lastUsername,
+                'error' => $error
+            ]);
         
      }
 

@@ -5,9 +5,8 @@
         "This file is @generated automatically"
     ],
 
-    # "content-hash": "d3e7a9403641e09c5dafe78c1071b68b",
 
-    #"content-hash": "7cf2f59def873ad32fbc56d90a921bf3",
+    "content-hash": "d3e7a9403641e09c5dafe78c1071b68b",
 
     "packages": [
         {
@@ -7685,6 +7684,7 @@
         },
         {
             "name": "vich/uploader-bundle",
+
             "version": "1.14.0",
             "source": {
                 "type": "git",
@@ -7695,6 +7695,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/8e9b4402a959983fd7effddae1dd81d587687d96",
                 "reference": "8e9b4402a959983fd7effddae1dd81d587687d96",
+              
                 "shasum": ""
             },
             "require": {
@@ -7780,7 +7781,10 @@
                 "file uploads",
                 "upload"
             ],
+
+
             "time": "2020-06-12T08:48:15+00:00"
+
         },
         {
             "name": "webimpress/safe-writer",

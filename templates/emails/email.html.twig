@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{# Ce template est un modèle de mail de bienvenue reçu à l'inscription sur notre site. Il est géré par le HomeController dans la méthode contact() #}
+
+{# Penser à changer l'image de fond #}
+
+{% block body %}
+<mjml>
+
+  <mj-body background-color="#eefdee" font-size="13px">
+
+    <mj-section background-color="#ffffff" padding-bottom="0px" padding-top="0">
+
+      <mj-column vertical-align="top" width="100%">
+        <mj-image src="http://go.mailjet.com/tplimg/mtrq/b/ox8s/mg1rw.png" alt="" align="center" border="none" width="600px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
+      </mj-column>
+      
+    </mj-section>
+
+    <mj-section background-color="#009FE3" vertical-align="top" padding-bottom="0px" padding-top="0">
+
+      <mj-column vertical-align="top" width="100%">
+        <mj-text align="left" color="#ffffff" font-size="45px" font-weight="bold" font-family="Anonymous Pro" padding-left="25px" padding-right="25px" padding-bottom="30px" padding-top="50px">Bienvenue chez DocX</mj-text>
+      </mj-column>
+
+    </mj-section>
+
+    <mj-section background-color="#009fe3" padding-bottom="20px" padding-top="20px">
+
+      <mj-column vertical-align="middle" width="100%">
+
+        <mj-text align="left" color="#ffffff" font-size="22px" font-family="Anonymous Pro" padding-left="25px" padding-right="25px">
+
+        {# On récupère ici l'indice 'EmailContact' du controller EmailNotification qui renvoie ce modèle d'email #}
+        <span style="color:#4ab64a">Cher.e {{ Emailcontact.firstname }},</span><br /><br /> bienvenue chez <span style="color:#4ab64a, font-size:50px;">DOCX</span>.
+        </mj-text>
+
+        <mj-text align="left" color="#ffffff" font-size="15px" font-family="Anonymous Pro" padding-left="25px" padding-right="25px">
+            Nous vous remercions pour votre inscription.
+            Pour toute question, vous pouvez nous contacter à cette adresse turtles@docx.com.
+            Connectez-vous sur votre profil grâce à vos identifiants.
+        </mj-text>
+
+        <mj-button align="left" font-size="22px" font-weight="bold" background-color="#323232" border-radius="10px" color="#4ab64a" font-family="Anonymous Pro">
+            Connexion
+        </mj-button>
+        <mj-text align="left" color="#ffffff" font-size="15px" font-family="Anonymous Pro" padding-left="25px" padding-right="25px">Merci, <br />La Team Docx</mj-text>
+      </mj-column>
+
+    </mj-section>
+
+  </mj-body>
+</mjml>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BACK OFFICE {% endblock %}
+
+{% block body %}
+<div class="col-md-10">
+    
+
+    <div class="col-md-8">
+        <h2>LISTE DES DOCUMENTS</h2>
+
+        <table class="table table-bordered text-center">
+
+            {# Création d'une boucle pour récupérer les données de chaque colonne dans la table Docs.
+               À chaque tour de boucle, la variable de réception 'data' récupère les données d'une colonne.
+               Si les données récupérées ne concernent pas celles de la colonne 'id' en BDD, la boucle affiche les données récupérées dans les autres colonnes.
+               - Syntaxte twig d'une boucle for = FOR + variable de réception IN variable du controller (idem foreach($colonne as $data)) #}
+               
+            <tr>
+                {% for data in colonne %}
+    
+                    {% if data != 'id' %}
+    
+                        <th>{{ data }}</th>
+    
+                    {% endif %}
+    
+                {% endfor %}
+
+            {# Ajout d'un bouton pour supprimer un document #}
+                    <th>Supprimer</th>
+            </tr>
+
+            {# Création d'une boucle pour récupérer les données de chaque document.
+               À chaque tour de boucle, la variable de réception 'data' récupère les données d'un document
+               et affiche le document, sa taille, sa date d'enregistrement sur le site, sa date d'édition et sa date d'échéance dans une cellule.  #}
+
+            {% for data in document %}
+                <tr>
+                    <td>{{ data.document }}</td>
+                    <td>{{ data.taille }}</td>
+
+                     {# La BDD renvoie un objet DateTime donc il ne peut pas être converti en chaîne de caractères.
+                    Le filtre date de Twig renvoie convertit cet objet en mois, jour, année  et heure, minute, seconde #}
+                    <td>{{ data.created_at|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
+
+                    <td>{{ data.date_edition|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
+                    <td>{{ data.date_echeance|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
+
+                    <td><a class="btn btn-dark" href="{{ path('admin_docs', {'id': data.id}) }}"><i class="far fa-edit"></i>Modifier</a></td>
+                    <td><a class="btn btn-danger" href="{{ path('admin_docs', {'id': data.id}) }}"><i class="far fa-trash-alt"></i>Supprimer</a></td>
+                </tr>
+            {% endfor %}     
+    
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\DocsRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DocsRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -26,6 +27,7 @@ class Docs
      */
     private $document;
 
+    // Ajout de la propriété qui permettra de stocker le document téléchargé
     /**
      * @Vich\UploadableField(mapping="doc_file", fileNameProperty="file")
      */
@@ -64,7 +66,7 @@ class Docs
 
     public function getDocument(): ?string
     {
-        return $this->document = $document;
+        return $this->document;
     }
 
     public function setDocument(?string $document): self
@@ -110,7 +112,7 @@ class Docs
         return $this;
     }
 
-    public function getDateEcheance(): \DateTimeInterface
+    public function getDateEcheance(): ?\DateTimeInterface
     {
         return $this->date_echeance;
     }

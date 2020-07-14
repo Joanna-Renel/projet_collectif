@@ -33,6 +33,7 @@
 
     <ul class="menu d-flex text-center ">
 
+
       {# <li class="menu1">
         <a class="nav" href="# ">
           <span class="sr-only ">(current)</span>
@@ -40,20 +41,22 @@
       </li> #}
 
       <li class="menu2">
+
         <a class="nav" href="">ACCUEIL</a>
       </li>
 
-      <li class="menu3">
+      <li class="menunav">
         <a class="nav" href="{{ path('service') }} ">SERVICES</a>
       </li>
 
-      <li class="menu4">
+      <li class="menunav">
       <a class="nav" href="{{ path('about') }} ">A PROPOS</a>
       </li>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           MEMBRE
+
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ path('registration') }} ">S'incrire</a>

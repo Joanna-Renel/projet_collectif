@@ -3,6 +3,7 @@ body
     background: #eefdee;
     font-family: 'Anonymous Pro', monospace, Arial, Helvetica, sans-serif;
 
+
 }
 
 /* .mr-auto menu {
@@ -36,14 +37,14 @@ li .menu
 /* footer{
     
     position:absolute;
+
     padding:0
     bottom: 0; 
     
     Right: 0;
     width: 100%;
     height: 50px;
-    
-    } */
+} */
 
 blockquote
 {

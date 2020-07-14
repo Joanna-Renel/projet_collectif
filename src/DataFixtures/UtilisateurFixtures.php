@@ -32,8 +32,10 @@ class UtilisateurFixtures extends Fixture
 
                         ->setAdresse($faker->address)
 
-                        ->setPassword($faker->password);
+                        ->setPassword($faker->password)
 
+                        // Liaison des documents créés précedemment aux utilisateurs
+                        ->setDocument($utilisateur);
                     
             // Création d'un statut premium en fonction de l'id utilisateur pair ou impair
             if($i % 2 == 0)
@@ -43,11 +45,34 @@ class UtilisateurFixtures extends Fixture
                 $utilisateur->setPremium('non');
             }
             
-            
             // Préparation des requêtes d'insertion dans la table Utilisateur
             $manager->persist($utilisateur);
 
-                // 2.Boucle for permettant de créer 2 commentaires pour chaque utilisateur
+            
+            // 2.Boucle for permettant de créer les documents enregistrés par les utilisateurs
+            for($k = 1; $k <= 2; $k++)
+            {
+                // Instanciation de la class Docs pour créer de nouveaux documents
+                $document = new Docs;
+                
+                // Instanciation d'un nouvel objet DateTime contenant la date actuelle sous forme de timestamp
+                $now = new \DateTime;
+
+                // Création des documents : document, taille, date d'ajout en BDD, date d'édition et date d'échéance
+                $document->setDocument($faker->imageUrl())
+
+                        ->setTaille(($faker->randomDigitNotNull) . '' . 'Mo')
+
+                        ->setDateEdition($faker->dateTimeBetween('-6 months'))
+
+                        ->setCreatedAt($faker->dateTimeBetween('-6 months'))
+
+                        ->setDateEcheance($faker->dateTimeBetween('-6 months'));
+                
+                // Préparation des requêtes d'insertion dans la table Docs
+                $manager->persist($document);
+
+                // 3.Boucle for permettant de créer 2 commentaires pour chaque utilisateur
                 for($j = 1; $j <= 2; $j++)
                 {
                     // Instanciation d'un nouvel objet Comments pour créer de nouveaux commentaires
@@ -60,51 +85,24 @@ class UtilisateurFixtures extends Fixture
                     $now = new \DateTime;
 
                     // Création de la date d'ajout du commentaire utilitsateur en base de données
-                    $comments->setCreatedAt($now);
+                    $comments->setCreatedAt($now)
 
-                    // Création de pseudonymes aléatoires grâce à UserName()
-                    $comments->setPseudo($faker->userName());
+                            // Création de pseudonymes aléatoires grâce à UserName()
+                            ->setPseudo($faker->userName())
                     
-                    // Création du contenu des commentaires
-                    $comments->setCommentaire($content);
+                            // Création du contenu des commentaires
+                            ->setCommentaire($content)
 
-                    // Liaison des commentaires aux utilisateurs
-                    $comments->setUtilisateur($utilisateur);
+                            // Liaison des commentaires aux utilisateurs
+                            ->setUtilisateur($utilisateur);
 
                     // Préparation de la requête SQL pour l'insertion des commentaires dans la table Comments
                     $manager->persist($comments);
 
-                        // 3.Boucle for permettant de créer les documents enregistrés par les utilisateurs
-                        for($k = 1; $k <= 2; $k++)
-                        {
-                            // Instanciation de la class Docs pour créer de nouveaux documents
-                            $document = new Docs;
-                            
-                            // Instanciation d'un nouvel objet DateTime contenant la date actuelle sous forme de timestamp
-                            $now = new \DateTime;
+                }     
 
-                            // Création des documents : document, taille, date d'ajout en BDD, date d'édition et date d'échéance
-                            $document->setDocument($faker->imageUrl())
-
-                                    ->setTaille(($faker->randomDigitNotNull) . '' . 'Mo')
-
-                                    ->setDateEdition($faker->dateTimeBetween('-6 months'))
-
-                                    ->setCreatedAt($faker->dateTimeBetween('-6 months'))
-
-                                    ->setDateEcheance($faker->dateTimeBetween('-6 months'))
-
-                                    // Liaison des documents aux utilisateurs
-                                    ->setUtilisateur($utilisateur);
-                            
-                                    // Préparation des requêtes d'insertion dans la table Docs
-                                    $manager->persist($document);
-
-                        }
-                }         
-           
-           
-
+            }
+        
         }
         // Exécution des requêtes SQL dans les tables Utilisateur, Comments et Docs
          $manager->flush();

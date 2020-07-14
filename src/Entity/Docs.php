@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * @ORM\Entity(repositoryClass=DocsRepository::class)
- * @Vich\Uploadable
- */
+    /**
+     * @ORM\Entity(repositoryClass=DocsRepository::class)
+     * @Vich\Uploadable
+     */
 class Docs
 {
     /**
@@ -53,11 +53,6 @@ class Docs
      */
     private $date_echeance;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="documents")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $utilisateur;
 
     public function getId(): ?int
     {
@@ -124,17 +119,6 @@ class Docs
         return $this;
     }
 
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $utilisateur): self
-    {
-        $this->utilisateur = $utilisateur;
-
-        return $this;
-    }
 
     public function getDocFile(): ?File 
     {

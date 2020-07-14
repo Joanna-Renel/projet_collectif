@@ -18,7 +18,7 @@ class Comments
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $pseudo;
 
@@ -32,11 +32,6 @@ class Comments
      */
     private $commentaire;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $utilisateur;
 
     public function getId(): ?int
     {

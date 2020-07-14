@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f1c62d707bb078310187dc9d436fe27",
+
+
+
+    "content-hash": "d3e7a9403641e09c5dafe78c1071b68b",
+
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -7681,7 +7685,9 @@
         },
         {
             "name": "vich/uploader-bundle",
+
             "version": "1.15.0",
+
             "source": {
                 "type": "git",
                 "url": "https://github.com/dustin10/VichUploaderBundle.git",
@@ -7689,8 +7695,10 @@
             },
             "dist": {
                 "type": "zip",
+              
                 "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/07658fb47429d7e108fa43d8c74ca8cd7edaa0d9",
                 "reference": "07658fb47429d7e108fa43d8c74ca8cd7edaa0d9",
+
                 "shasum": ""
             },
             "require": {
@@ -7776,7 +7784,10 @@
                 "file uploads",
                 "upload"
             ],
+
             "time": "2020-07-09T07:29:07+00:00"
+
+
         },
         {
             "name": "webimpress/safe-writer",

@@ -19,57 +19,56 @@ class UtilisateurFixtures extends Fixture
         // 1.Création d'une boucle pour créer 10 utiisateurs en BDD
         for($i = 1; $i <= 10; $i++)
         {
-            // Instanciation de la class Docs pour créer de nouveaux documents
-            $document = new Docs;
-                
-            // Instanciation d'un nouvel objet DateTime contenant la date actuelle sous forme de timestamp
-            $now = new \DateTime;
+            $utilisateur = new Utilisateur;
 
-            // Création des documents : document, taille, date d'ajout en BDD, date d'édition et date d'échéance
-            $document->setDocument($faker->imageUrl())
+            // Création des données utilisateur : prénom, nom, username, email, adresse, password, premium
+            $utilisateur->setPrenom($faker->firstName)
 
-                    ->setTaille(($faker->randomDigitNotNull) . '' . 'Mo')
+                        ->setNom($faker->lastName)
 
-                    ->setDateEdition($faker->dateTimeBetween('-6 months'))
+                        ->setUsername($faker->userName)
 
-                    ->setCreatedAt($faker->dateTimeBetween('-6 months'))
+                        ->setEmail($faker->email)
 
-                    ->setDateEcheance($faker->dateTimeBetween('-6 months'));
+                        ->setAdresse($faker->address)
+
+                        ->setPassword($faker->password);
+                    
+                        // Création d'un statut premium en fonction de l'id utilisateur pair ou impair
+                        if($i % 2 == 0)
+                        {
+                            $utilisateur->setPremium('oui');  
+                        } else {
+                            $utilisateur->setPremium('non');
+                        }
             
-            // Préparation des requêtes d'insertion dans la table Docs
-            $manager->persist($document);
+                        // Préparation des requêtes d'insertion dans la table Utilisateur
+                        $manager->persist($utilisateur);
 
             // 2.Boucle for permettant de créer les documents enregistrés par les utilisateurs
             for($k = 1; $k <= mt_rand(4,6); $k++)
             {
-                $utilisateur = new Utilisateur;
+                         // Instanciation de la class Docs pour créer de nouveaux documents
+                        $document = new Docs;
+                            
+                        // Instanciation d'un nouvel objet DateTime contenant la date actuelle sous forme de timestamp
+                        $now = new \DateTime;
 
-                // Création des données utilisateur : prénom, nom, username, email, adresse, password, premium
-                $utilisateur->setPrenom($faker->firstName)
-    
-                            ->setNom($faker->lastName)
-    
-                            ->setUsername($faker->userName)
-    
-                            ->setEmail($faker->email)
-    
-                            ->setAdresse($faker->address)
-    
-                            ->setPassword($faker->password)
-    
-                            // Liaison des documents créés précedemment aux utilisateurs
-                            ->setDocs($document);
+                        // Création des documents : document, taille, date d'ajout en BDD, date d'édition et date d'échéance
+                        $document->setDocument($faker->imageUrl())
+
+                                ->setTaille(($faker->randomDigitNotNull) . '' . 'Mo')
+
+                                ->setDateEdition($faker->dateTimeBetween('-6 months'))
+
+                                ->setCreatedAt($faker->dateTimeBetween('-6 months'))
+
+                                ->setDateEcheance($faker->dateTimeBetween('-6 months'))
+
+                                ->setUtilisateur($utilisateur);
                         
-                            // Création d'un statut premium en fonction de l'id utilisateur pair ou impair
-                            if($i % 2 == 0)
-                            {
-                                $utilisateur->setPremium('oui');  
-                            } else {
-                                $utilisateur->setPremium('non');
-                            }
-                
-                            // Préparation des requêtes d'insertion dans la table Utilisateur
-                            $manager->persist($utilisateur);
+                        // Préparation des requêtes d'insertion dans la table Docs
+                        $manager->persist($document);
 
                         // 3.Boucle for permettant de créer 2 commentaires pour chaque utilisateur
                         for($j = 1; $j <= mt_rand(4,6); $j++)

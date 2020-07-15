@@ -10,13 +10,7 @@
     {# 'message' => variable de reception qui receptionne un message utilisateur par tour de boucle. Ce message 'success'
     provient du Security_Controller l.70 #}
 
-    {# {% if (message in app.flashes('success')) %}
-
-        <div class="col-md-6 mt-4 mx-auto bg-success rounded text-white text-center p-2">
-            {{ message }}
-        </div>
-
-    {% endif %} #}
+  
 
 <h1 class="display-4 text-center my-4">Se connecter</h1>
 
@@ -53,7 +47,7 @@
         <input type="password" class="form-control" id="_password" name="_password" placeholder="Mot de passe" required>
       </div>
 
-      <button type="submit" class="btn btn-info">Se connecter</button>
+      <button type="submit" class="btn btn-info"><a href="{{ path('membre', 'id') }}">Se connecter</a></button>
     </form>
 
 {% endblock %}

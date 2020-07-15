@@ -61,10 +61,20 @@ class DocsController extends AbstractController
     On récupère la liste de documents appartenant au membre et on l'affiche
     sous forme de table
     */
-       /**
+
+    /**
      * @Route("/membre/{id}/docs", name="docs")
      */
-   
+    public function showDocs(UtilisateurRepository $repo, $id)
+    {
+        $utilisateur = $repo->find($id);
+
+        dump($utilisateur);
+        return $this->render('docs/show.html.twig', [
+            'docs' => $utilisateur,
+        ]);
+    }
+
     // public function showDocs(DocsRepository $repo)
     // {
         
@@ -86,16 +96,7 @@ class DocsController extends AbstractController
     //     ]);
        
     // }
-    public function showDocs(UtilisateurRepository $repo, $id)
-    {
-        $utilisateur = $repo->find($id);
-
-        dump($utilisateur);
-        return $this->render('docs/show.html.twig', [
-            'utilisateur' => $utilisateur,
-        ]);
-    }
-
+   
    
     // SUPPRESSION DE DOCUMENT
     /**

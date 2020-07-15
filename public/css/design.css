@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 .menu li{
     padding: -92px;
@@ -27,12 +27,13 @@
 
     margin-top:120px;
     margin-left: 544px;
-=======
+}
+
 body
 {
     background: #eefdee;
     font-family: 'Anonymous Pro', monospace, Arial, Helvetica, sans-serif;
->>>>>>> 7957dc7d102f2925dfb63b4574e38581be13fda1
+
 
 }
 
@@ -181,9 +182,80 @@ ul li
  
 }
 
-/* .coordonnees ul
-{
-    margin-top: 70px;
 
+
+ul li, a
+{   
+    
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold !important;
+    list-style: none;
+    color:#4ab64a !important;
+    padding-right:15px;
+
+}
+
+/* .dropdown a
+{
+    display: block;
 } */
 
+/* BODY */
+
+body
+{   
+    background: #eefdee !important;
+    font-family: 'Anonymous Pro', monospace, Arial, Helvetica, sans-serif !important; 
+
+}
+/* .carousel
+{
+    float:center;
+    margin-top:50px;
+} */
+
+/* FOOTER */
+.footer
+{
+    background:#323232;
+    color:#4ab64a;
+    display:flex;
+    flex-wrap:wrap;
+    
+}
+
+small, p
+{
+    color:white;
+    flex-wrap:wrap;
+}
+
+footer section{
+	justify-content: center;
+}
+
+
+.socials, footer p{
+	text-align: center;
+}
+
+.socials img
+{
+	width: 60px;
+	height: 60px;
+    margin: 10px;
+    border-radius:50px;
+}
+
+footer section .footer-items
+{
+	display: inline-flex;
+}
+
+footer section .footer-item
+{
+	width: 200px;
+	padding: 10px;
+	margin: 10px;
+} 

@@ -5,11 +5,22 @@
 {% block main %}
 <div class="col">    
 
+<<<<<<< HEAD
     <h1 class="display-4 text-center">Mes documents</h1>
 
         <div class="row mx-auto">
             <form class="" action="" method="post" enctype="multipart/form-data"> 
                 
+=======
+    <h1 class="display-4 text-center">Ajouter des documents</h1>
+
+        <div class="row mt-3 mx-auto">
+
+            {{ form_start(formDoc, {'attr':{'class':'mx-auto'}}) }}
+
+                <form class="" action="" method="post" enctype="multipart/form-data"> 
+                    
+>>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
                     <div class="">
                         <select name="type" id="typeDoc" class="custom-select">
                             <option placeholder="Type document" selected>
@@ -21,11 +32,18 @@
                     </div>
 
                     <div>
+<<<<<<< HEAD
                     {{ form_start(formDoc, {'attr':{'class':'mx-auto'}}) }}
 
                         {{ form_row(formDoc.docFile, {'attr':{'class':'mx-auto'}}) }}
                         
                     {{ form_end(formDoc) }}   
+=======
+
+                        {{ form_row(formDoc.docFile, {label:'choisir document '},{'attr':{'label':'choisir','class':'mx-auto'}}) }}
+                        {{ form_row(formDoc.date_edition, {'attr':{'class':'mx-auto'}}) }}
+                        
+>>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
                     </div>
 
                     {# <div class="col custom-file">
@@ -33,9 +51,19 @@
                     </div> #}
 
                     <div class="">
+<<<<<<< HEAD
                         <button type="submit" class="btn btn-danger">Ajouter document</button>
                     </div>
 
             </form>
+=======
+                        <button type="submit" class="btn btn-success">Ajouter document</button>
+                    </div>
+
+                </form>
+                
+            {{ form_end(formDoc) }}   
+
+>>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
         </div>
 {% endblock %}

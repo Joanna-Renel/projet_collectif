@@ -66,7 +66,7 @@ dump($request);
         
         $em = $this->getDoctrine()->getManager();
 
-        $colonnes = $em->getClassMetaData(Docs::class)->getFieldNames();
+        $formDoc->handleRequest($request);
 
         $docs = $repo->find($id);
 

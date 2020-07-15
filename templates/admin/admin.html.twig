@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}BACK OFFICE {% endblock %}
 
 {% block body %}
@@ -59,3 +60,18 @@
     </div>
 </div>
 {% endblock %}
+=======
+    {% block body %}
+    
+        <h1 class="display-4 text-center my-4">BACK OFFICE</h1>
+        
+            <p class="text-center">Bienvenue sur votre Back Office</p> 
+        
+            <a href="{{ path('admin_membre') }}" class="col-md-6 offset-md-3 btn btn-dark mb-2">GESTION DES MEMBRES</a> 
+            
+            <a href="{{ path('admin_document') }}" class="col-md-6 offset-md-3 btn btn-info mb-2">GESTION DES DOCUMENTS</a>
+            
+            <a href="{{ path('admin_commentaire') }}" class="col-md-6 offset-md-3 btn btn-warning mb-2">GESTION DES COMMENTAIRES</a>
+            
+    {% endblock %}
+>>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c

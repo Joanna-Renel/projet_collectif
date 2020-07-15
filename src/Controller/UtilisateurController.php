@@ -15,7 +15,6 @@ class UtilisateurController extends AbstractController
 {
     /**
      * @Route("/membre/{id}", name="membre")
-     * @Route("membre/{id}/update", name="membre_update")
      */
     public function home(Utilisateur $utilisateur = null, Request $request, EntityManagerInterface $manager, UtilisateurRepository $repo)
     {
@@ -38,13 +37,17 @@ class UtilisateurController extends AbstractController
             les infos du formulaire
 
             $user = $this->getUser();
+            Pour récupérer l'id $user->getId();
         */
 
         // $utilisateur = $repo->find($id);
-
-        // if(!$utilisateur)
+        
+        // Si l'utilisateur n'est pas premium il reçoit une alerte promotionnelle
+        
+        // if($utilisateur->getPremium() == 'non')
         // {
-        //     return $this->redirectToRoute('registration');
+         //   $this->addFlash('success', 'Profitez de notre offre exceptionnelle et devenez membre Premium 
+        // pour 24€99 seulement');
         // }
 
         dump($utilisateur);
@@ -109,35 +112,30 @@ class UtilisateurController extends AbstractController
 
             
     ]);
-
-
-    
+   
     }
 
+    
+     
+  /*
+    Ajouter show() pour tests avec route pour docs et template dans docs
+    */ 
    
-    // /**
-    //  * @Route("/membre/show", name="membre_show")
-    //  * @Route("membre/{id}/update", name="membre_update")
-    //  */
-    // public function form(Utilisateur $utilisateur, Request $request, EntityManagerInterface $manager)
-    // {
-    //     $utilisateur = new Utilisateur;
+    /**
+     * @Route("/membre/docs/{id}", name="membre_docs")
+     */
+    public function show(UtilisateurRepository $repo, $id, EntityManagerInterface $manager)
+    {
+        $utilisateur = $repo->find($id);
                    
-    //     $form = $this->createForm(UtilisateurType::class, $utilisateur);
-
-    //     // $form->handleRequest($request);
-
-    //     dump($utilisateur);
-
+        dump($utilisateur);
      
 
-    //     return $this->render('utilisateur/membre.html.twig', [
-    //         'formUser' => $form->createView(),
-    //         // 'prenom' => $utilisateur->getPrenom(),
-    //         // 'utilisateur' => $utilisateur
-    //     ]);
+        return $this->render('utilisateur/showMyDocs.html.twig', [
+            'utilisateur' => $utilisateur,
+        ]);
        
-    // }
+    }
 
 
 

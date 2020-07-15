@@ -17,5 +17,4 @@ return [
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
 
     Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
-
 ];

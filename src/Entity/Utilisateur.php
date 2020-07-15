@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 // L'objet UniqueEntity permet de préciser les champs qui attendent des données uniques. Ici, le champ "email".
+// On précise ici à Symfony qu'Utilisateur est la table contenant tous les utilisateurs du site.
+// Pour pouvoir encoder le mot de passe, il faut que notre entité User implemente l'interface UserInterface.
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
@@ -21,8 +23,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * 
  */
 
- // On précise ici à Symfony qu'Utilisateur est la table contenant tous les utilisateurs du site.
- // Pour pouvoir encoder le mot de passe, il faut que notre entité User implemente l'interface UserInterface.
+ 
 class Utilisateur implements UserInterface
 {
     /**
@@ -33,12 +34,12 @@ class Utilisateur implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
@@ -47,16 +48,16 @@ class Utilisateur implements UserInterface
      */
     private $username;
 
+
+    //  On appelle l'objet Assert et on pointe sur la contrainte Email pour transformer le champ en type ="email"
+    // Cette contrainte fait en sorte que l'email que soit unique dans la BDD pour éviter les doublons.
+
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
      * @Assert\Email(
      *  message="Cette adresse email '{{ value }}' n'est pas valide."
      * )
      */
-
-    
-    //  On appelle l'objet Assert et on pointe sur la contrainte Email pour transformer le champ en type ="email"
-    // Cette contrainte fait en sorte que l'email que soit unique dans la BDD pour éviter les doublons.
     private $email;
 
     /**
@@ -64,35 +65,35 @@ class Utilisateur implements UserInterface
      */
     private $adresse;
 
-    /**
-     * @ORM\Column(type="string", length=45)
-     * @Assert\Length(min="8", minMessage="Votre mot de passe doit contenir 8 caractères minimum.")
-     *
-     */
-    
+
     // On importe l'objet Assert (cf l.7) et on pioche les méthodes Length() et EqualTo().
     // Length est une contrainte de longueur.
     // EqualTo est une contrainte qui requiert que la valeur du champ password soit égale à celle du champ confirm_password
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit contenir 8 caractères minimum.")
+     *
+     */
     private $password;
     
     
-    /**
-     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne correspondent pas.")
-     * 
-     */
-
     // On ajoute une propriété public qui sera en charge de comparer le mot de passe
     // au mot de passe renseigné dans le formulaire.
     // Inutile d'ajouter une annotation ORM, ni d'ajouter des seters et geters
     // car ils ne seront pas ajoutés en BDD.
 
-    public $confirm_password;
-
     /**
-     * @ORM\Column(type="string", length=45)
+     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne correspondent pas.")
+     * 
      */
+    public $confirm_password;
+    
     // Par défaut, aucun utilisateur n'est premium.
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+   
     private $premium = 'non';
 
     /**
@@ -101,20 +102,24 @@ class Utilisateur implements UserInterface
     private $roles = [];
 
     /**
+     * @ORM\ManyToOne(targetEntity=Docs::class, inversedBy="utilisateurs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $docs;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="utilisateur", orphanRemoval=true)
      */
     private $comments;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Docs::class, mappedBy="utilisateur", orphanRemoval=true)
-     */
-    private $documents;
-
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->documents = new ArrayCollection();
     }
+
+    
+
+
 
     public function getId(): ?int
     {
@@ -243,6 +248,18 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
+    public function getDocs(): ?Docs
+    {
+        return $this->docs;
+    }
+
+    public function setDocs(?Docs $docs): self
+    {
+        $this->docs = $docs;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Comments[]
      */
@@ -274,34 +291,5 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Docs[]
-     */
-    public function getDocuments(): Collection
-    {
-        return $this->documents;
-    }
-
-    public function addDocument(Docs $document): self
-    {
-        if (!$this->documents->contains($document)) {
-            $this->documents[] = $document;
-            $document->setUtilisateur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDocument(Docs $document): self
-    {
-        if ($this->documents->contains($document)) {
-            $this->documents->removeElement($document);
-            // set the owning side to null (unless already changed)
-            if ($document->getUtilisateur() === $this) {
-                $document->setUtilisateur(null);
-            }
-        }
-
-        return $this;
-    }
+ 
 }

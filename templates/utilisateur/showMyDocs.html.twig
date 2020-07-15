@@ -1,0 +1,61 @@
+{% extends "utilisateur/index.html.twig" %}
+
+{% block main %}
+<div class="col"> 
+
+    <h1 class="display-4 text-center">Mes documents</h1>
+
+    {% if utilisateur.documents %}
+    
+        <table class="table table-striped mt-2">
+
+            <thead>
+                <th>Document</th>
+                <th>Taille</th>
+                <th>Date d'édition</th>
+                <th>Date d'échéance</th>
+                <th>Supprimer</th>
+                <th>Prolonger</th>
+            </thead>
+            {# {{dump(docs.document)}}
+
+            {{ dump(userId)}} #}
+            <tbody>
+                {# {% for doc in docs %}          #}
+
+                {% for doc in utilisateur.documents %}
+                    
+                {# {% endfor %} #}
+                <tr>
+                    <td>{{ doc}}</td>
+                        <td>Le titre</td>
+                        <td>Le titre</td>
+                        <td>Le titre</td>
+                        <td>Le titre</td>
+                        <td>{{ doc.id}} </td>
+                
+
+                        <td>{{ doc.document|raw }}</td>
+                        <td>{{ doc.taille}}</td>
+                        <td>{{ doc.date_edition|date('Y') }}</td>
+                        <td>{{ doc.date_echeance|date('Y') }}</td> 
+                        
+                        <td><a class="btn btn-info" href="{{ path('docs_add', {'id': doc.id}) }}"><i class="far fa-pencil"></i>Prolonger</a></td>
+                        <td><a class="btn btn-danger delete-doc" data-id="{{ doc.id }}" href=""><i class="far fa-trash-alt"></i>Supprimer</a></td>
+                </tr>
+                
+                {% endfor %} 
+
+            </tbody>
+        </table>
+
+    {% else %}
+        <p>Vous n'avez pas de documents enregistrés</p>
+    {% endif %}
+    </div>
+   
+{% endblock %}
+
+{% block javascripts %}
+    {# // <script src="asset('js/app.js')"></script> #}
+{% endblock %}

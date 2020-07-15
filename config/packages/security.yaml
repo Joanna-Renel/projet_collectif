@@ -23,10 +23,7 @@ security:
                 class: App\Entity\Utilisateur
                 property: email
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\Utilisateur
-                property: email
+        
 
     # Les firewalls représentent les parties du site à protéger et les moyens utilisés pour le faire.
     # Pattern permet de conserver l'accès au bandeau Symfony en bas de page.
@@ -40,8 +37,10 @@ security:
         main:
 
             # "Anonymous" indique quel utilisateur arrivant sur le site peut le visiter(si on l'enlève, le site est inaccessible).
-            anonymous: true
-            lazy: true
+            # anonymous: true
+            anonymous: lazy
+
+            # lazy: true
 
             # Les données stockées en BDD dans la table Utilisateur (le provider in_database est défini ci-dessus, ligne 20) seront protégées.
             provider: in_database
@@ -76,6 +75,9 @@ security:
 
     # access_denied_url: /home = Si un utilisateur ayant un ROLE_USER tente d'accéder au Back Office, il est redirigé automatiquement vers la route '/home',
     # cad vers la page d'accueil.
+
+    # Access_control indique à Symfony quel rôle utilisateur peut accéder au BackOffice (ROLE_ADMIN)
+    # et quel rôle ont les utilisateurs qui se connectent (ROLE_USER).
     access_control:
         
         - { path: ^/admin, roles: ROLE_ADMIN }

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+<<<<<<< HEAD
 // L'objet UniqueEntity permet de préciser les champs qui attendent des données uniques. Ici, les champs "email" et "phone".
 
 /**
@@ -21,6 +22,22 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
  */
+=======
+    // L'objet UniqueEntity permet de préciser les champs qui attendent des données uniques. Ici, les champs "email" et "phone".
+
+    /**
+     * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+     * @UniqueEntity(
+     *  fields = {"email", "phone"},
+     *  message = "Ces coordonées sont déjà associées à un compte."
+     * )
+     * 
+     */
+
+    /**
+     * @ORM\Entity(repositoryClass=ContactRepository::class)
+     */
+>>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
 class Contact
 {
     /**
@@ -40,13 +57,21 @@ class Contact
      */
     private $lastname;
 
+<<<<<<< HEAD
+=======
+    // La contrainte Type impose un type de données attendu. Ici, le numéro de téléphone doit être de valeur numérique.
+>>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Type(type = {"digit"},
      * message = "Ce champ ne doit contenir que des caractères numériques.")
      */
 
+<<<<<<< HEAD
     // La contrainte Type impose un type de données attendu. Ici, le numéro de téléphone doit être de valeur numérique.
+=======
+    
+>>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
     private $phone;
 
     /**

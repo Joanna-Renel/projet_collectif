@@ -102,16 +102,22 @@ class Utilisateur implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity=Docs::class, inversedBy="utilisateurs")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $document;
+    private $docs;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="utilisateur", orphanRemoval=true)
      */
-    private $commentaire;
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
+    
 
 
 
@@ -242,26 +248,45 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-    public function getDocument(): ?self
+    public function getDocs(): ?Docs
     {
-        return $this->document;
+        return $this->docs;
     }
 
-    public function setDocument(?self $document): self
+    public function setDocs(?Docs $docs): self
     {
-        $this->document = $document;
+        $this->docs = $docs;
 
         return $this;
     }
 
-    public function getCommentaire(): ?self
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
     {
-        return $this->commentaire;
+        return $this->comments;
     }
 
-    public function setCommentaire(?self $commentaire): self
+    public function addComment(Comments $comment): self
     {
-        $this->commentaire = $commentaire;
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUtilisateur() === $this) {
+                $comment->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }

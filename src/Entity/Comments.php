@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,12 @@ class Comments
      * @ORM\Column(type="text")
      */
     private $commentaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $utilisateur;
 
 
     public function getId(): ?int

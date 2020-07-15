@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\DocsRepository;
 use Symfony\Component\HttpFoundation\File\File;
@@ -52,6 +54,16 @@ class Docs
      * @ORM\Column(type="datetime")
      */
     private $date_echeance;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="docs", orphanRemoval=true)
+     */
+    private $utilisateurs;
+
+    public function __construct()
+    {
+        $this->utilisateurs = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -132,6 +144,37 @@ class Docs
         if($this->docFile instanceof UploadedFile)
         {
             $this->updated_at = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Utilisateur[]
+     */
+    public function getUtilisateurs(): Collection
+    {
+        return $this->utilisateurs;
+    }
+
+    public function addUtilisateur(Utilisateur $utilisateur): self
+    {
+        if (!$this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs[] = $utilisateur;
+            $utilisateur->setDocs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateur(Utilisateur $utilisateur): self
+    {
+        if ($this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs->removeElement($utilisateur);
+            // set the owning side to null (unless already changed)
+            if ($utilisateur->getDocs() === $this) {
+                $utilisateur->setDocs(null);
+            }
         }
 
         return $this;

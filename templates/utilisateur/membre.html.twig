@@ -2,47 +2,6 @@
 
 {% form_theme formUser 'bootstrap_4_layout.html.twig' %}
 
-<<<<<<< HEAD
-
-{% block main %}
-
-<h1 class="text-center"> Bienvenue dans votre espace, {{ utilisateur.prenom}} !</h1>
-
-
-    <div class="col-md-7">
-       {{ dump(app.user)}}
-
-        
-       {# {{ form(formUser) }} #}
-        {{ form_start(formUser, {'attr':{'class':' mx-auto'}}) }}
-
-            {{ form_row(formUser.username, {label:'Pseudo'}) }}
-            
-            {{ form_row(formUser.email, {'attr':{'class':'mx-auto'}}) }}
-            
-            <div class="form-group d-flex text-right">
-                <button type="button" class="btn" style="border-radius: 50%;"><a href="#">Modifier mot de passe</a></button>
-            </div>
-
-            {{ form_row(formUser.prenom, {'attr':{'class':'mx-auto'}}) }}
-
-            {{ form_row(formUser.nom, {'attr':{'class':'mx-auto'}}) }}            
-            
-            {{ form_row(formUser.adresse, {'attr':{'class':'mx-auto'}}) }}         
-
-            <form class=" col-md-6 mx-auto text-right" action="" method="post"> 
-                {# <div class="form-group">
-                    <label for="_username"> Email : </label>
-                    <input class="form-control" type="text" value="" name="_username" id="_username">
-                </div> #}
-
-                <button type="submit" class="btn btn-info">
-                    Enregistrer les modifications
-                </button>
-            </form>
-        {{ form_end(formUser) }} 
-
-=======
 
 {% block main %}
 
@@ -85,7 +44,6 @@
             </form>
         {{ form_end(formUser) }}
          
->>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
 
     </div>
 

@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
             $utilisateur->setPassword($hash);
 -
             // On affecte un ROLE_USER par défaut à chaque nouvel inscrit sur le site. Il n'aura donc pas accès au back office.
-            $utilisateur->setroles(["ROLE_USER"]);
+            // $utilisateur->setRoles(["ROLE_USER"]);
 
             // Préparation et stockage de la requête d'insertion en BDD
             $manager->persist($utilisateur);
@@ -60,7 +60,7 @@ class RegistrationController extends AbstractController
             $manager->flush();
 
             // Affichage de la confirmation d'inscription du nouveau membre
-            $this->addFlash('success', 'Félicitations pour votre inscription. Vous pouvez maintenant vous connecter.');
+            // $this->addFlash('success', 'Félicitations pour votre inscription. Vous pouvez maintenant vous connecter.');
 
             // Redirection vers la page de connexion quand l'inscription a été correctement réalisée
             return $this->redirectToRoute("login");
@@ -96,15 +96,16 @@ class RegistrationController extends AbstractController
             // Elle permet aussi de récupérer le dernier username (email) renseigné par l'internaute en cas d'erreur de connexion.
             $lastUsername = $authenticationUtils->getLastUsername();
 
-            // Redirection vers l'espace personnel du membre quand l'inscription a été réalisée.
-            // return $this->redirectToRoute("membre", [
-            //     'id' => $utilisateur->getId()
-            // ]);
-    
+                // Redirection vers l'espace personnel du membre quand l'inscription a été réalisée.
+                // return $this->redirectToRoute("membre", [
+                //     'id' => $utilisateur->getId()
+                // ]);
+            dump($utilisateur);
             // On envoie le message d'erreur et le dernier email saisi sur le template responsable de l'affichage du formulaire de connexion.
             return $this->render('registration/login.html.twig', [
                 'last_username' => $lastUsername,
-                'error' => $error
+                'error' => $error,
+                'id' => $utilisateur->getId()
             ]);
         
      }

@@ -16,10 +16,10 @@ class ServiceController extends AbstractController
      */
 
      // Méthode qui permet l'affiche de la page services et qui permet de laisser un commentaire sur les services utilisés par les membres.
-    public function comment(Comments $comments, Request $request, EntityManagerInterface $manager)
+    public function comment()
     {   
         // Création d'un nouveau commentaire
-        $comments = new Comments;
+       /*  $comments = new Comments;
 
         // Création du formulaire pour enregistrer un commentaire
         $form = $this->createForm(CommentsType::class, $comments);
@@ -27,8 +27,8 @@ class ServiceController extends AbstractController
         $form->handleRequest($request); 
         
         if($form->isSubmitted() && $form->isValid())
-
-        {  // On génère la date pour l'insertion en BDD
+ */
+       /*  {  // On génère la date pour l'insertion en BDD
            $comments->setCreatedAt(new \DateTime())
 
                     // On relie l'utilisateur au commentaire 
@@ -44,10 +44,10 @@ class ServiceController extends AbstractController
             //return $this->redirectToRoute('home', [ 
             //    'id' => $comments->getId() ]);
 
-        }
+        } */
         return $this->render('service/service.html.twig', [
             'controller_name' => 'ServiceController',
-            'formCommentaire' => $form->createView()
+         /*    'formCommentaire' => $form->createView() */
         ]);
     }
 }

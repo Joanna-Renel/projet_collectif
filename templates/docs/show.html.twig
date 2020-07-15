@@ -5,7 +5,7 @@
 
     <h1 class="display-4 text-center">Mes documents</h1>
 
-    {% if utilisateur.documents %}
+    {# {% if utilisateur.docs %} #}
     
         <table class="table table-striped mt-2">
 
@@ -17,40 +17,43 @@
                 <th>Supprimer</th>
                 <th>Prolonger</th>
             </thead>
-            {# {{dump(docs.document)}}
+            {# {{dump(docs.document)}} #}
 
-            {{ dump(userId)}} #}
+            {{ dump(utilisateur)}} 
             <tbody>
                 {# {% for doc in docs %}          #}
 
-                {% for doc in utilisateur.documents %}
+                {% for doc in utilisateur.docs %}
                     
                 {# {% endfor %} #}
                 <tr>
                     {# <td>{{ doc}}</td> #}
+                        <td>{{ doc.document }}</td>
+                        <td>{{ doc.taille }}</td>
+                        <td>{{ doc.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ doc.dateEdition|date('d/m/Y') }}</td>
+                        <td>{{ doc.dateEcheance|date('d/m/Y') }}</td>
+                        {# <td>Le titre</td>
                         <td>Le titre</td>
-                        <td>Le titre</td>
-                        <td>Le titre</td>
-                        <td>Le titre</td>
-                        <td>{{ doc.id}} </td>
+                        <td>{{ docs.id}} </td> #}
                 
 
-                        <td>{{ doc.document|raw }}</td>
-                        <td>{{ doc.taille}}</td>
-                        <td>{{ doc.date_edition|date('Y') }}</td>
-                        <td>{{ doc.date_echeance|date('Y') }}</td> 
+                        {# <td>{{ docs.document|raw }}</td>
+                        <td>{{ docs.taille}}</td>
+                        <td>{{ docs.dateEdition|date('Y') }}</td>
+                        <td>{{ docs.date_echeance|date('Y') }}</td>  #}
                         
-                        <td><a class="btn btn-info" href="{{ path('docs_add', {'id': doc.id}) }}"><i class="far fa-pencil"></i>Prolonger</a></td>
-                        <td><a class="btn btn-danger delete-doc" data-id="{{ doc.id }}" href=""><i class="far fa-trash-alt"></i>Supprimer</a></td>
-            </tr>
-                            {% endfor %} 
+                        {# <td><a class="btn btn-info" href="{{ path('docs_add', {'id': docs.id}) }}"><i class="far fa-pencil"></i>Prolonger</a></td>
+                        <td><a class="btn btn-danger delete-doc" data-id="{{ docs.id }}" href=""><i class="far fa-trash-alt"></i>Supprimer</a></td> #}
+                </tr>
+                {% endfor %}
 
             </tbody>
         </table>
 
-    {% else %}
+    {# {% else %}
         <p>Vous n'avez pas de documents enregistrés</p>
-    {% endif %}
+    {% endif %} #}
     </div>
    
 {% endblock %}

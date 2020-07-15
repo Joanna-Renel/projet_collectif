@@ -77,9 +77,7 @@ class UtilisateurController extends AbstractController
         return $this->render('utilisateur/membre.html.twig', [
             'formUser' => $form->createView(),
             'utilisateur' => $utilisateur ,
-    ]);
-
-
+        ]);
     
     }
 
@@ -111,13 +109,10 @@ class UtilisateurController extends AbstractController
             'utilisateur' => $utilisateur ,
 
             
-    ]);
-   
-    }
-
+        ]);
     
-     
-  /*
+    }
+    /*
     Ajouter show() pour tests avec route pour docs et template dans docs
     */ 
    

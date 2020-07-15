@@ -1,49 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Site de gestion de documents">
-
-  <title>{% block title %} NOTRE PROJET COLLECTIF {% endblock %}</title>
-  
-  {% block stylesheets %}
-  
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">    <link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css " integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk " crossorigin="anonymous ">
-    <link rel="stylesheet " href = "path / to / font -awesome / css / font – awesome.min.css">
-    <link rel="stylesheet " href="{{ asset( 'css/design.css') }} "> {# asset() :  dossier 'public' et permettant de générer une URL jusqu'au fichier style.css #}
-  
-  {% endblock %}
- 
-</head>
-
-<nav class="navbar navbar-expand-lg">
-
-  <a class="navbar-brand" href="#"> DOC X </a>
-
-  <div class="logo"> 
-    <img src="{{asset('photos/logo.png')}} ">
-  </div> 
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse " id="navbarSupportedContent ">
-
-    <ul class="menu d-flex text-center ">
-
-<<<<<<< HEAD
-      <li class="menu">
-        <a class="logo" href="# "> DOCX
-        </a>
-        <div class="photo">
-        <img src="{{asset('photos/logo.png')}} ">
-          <span class="sr-only ">(current)</span>
-        </div>
-      </li>
-=======
 
   <head>
 
@@ -77,7 +33,6 @@
 
             {# path() est une fonction Twig permettant de générer une URL en fonction du nom de la route envoyée en argument.
             ex : path('blog') --> URL 'blog'#}
->>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
 
             {# LOGO et Route vers l'accueil  #}
             <a class="logo navbar-brand" href="{{ path('home') }}">
@@ -88,21 +43,6 @@
             
            
 
-<<<<<<< HEAD
-       <li class="menunav">
-=======
-      {# <li class="menu1">
-        <a class="nav" href="# ">
-          <span class="sr-only ">(current)</span>
-        </a>
-      </li> #}
-
-      <li class="menu2">
->>>>>>> 7957dc7d102f2925dfb63b4574e38581be13fda1
-        <a class="nav" href="">ACCUEIL</a>
-      </li>
-=======
->>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c
 
             <div class="liens ">
               
@@ -149,63 +89,6 @@
 
                       {# Lien de déconnexion pour redirection vers l'accueil #}
 
-<<<<<<< HEAD
-      <li class="menunav dropdown">
- <a class="nav-link dropdown-toggle" href="{{ path('registration') }} ">MEMBRE</a><id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          MEMBRE
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ path('registration') }} ">S'incrire</a>
-          <a class="dropdown-item" href="{{ path('registration') }} ">Se connecter</a>
-          {# <div class="dropdown-divider"></div> #}
-        </div>
-      </li>
-    </ul> 
-
-  </div>
-</nav>
-
-{% block body %}
-
-  <section class="container-fluid">
-
-
-  </section>
-
-{% endblock %}
-
-<footer class="py-5 footer text-center ">
-
-  <ul>
-    <li><a href="@mailto:turtles@docx.com">CONTACT</a></li>
-    <li><a href="">CGU</a></li>
-    <li><a href="#social">RESEAUX SOCIAUX</a></li>
-    
-    <li><a href="">RGPD</a></li>
-  </ul>
-
-  <div  style="height: 100px; display: none;">
-    <a id="social" href="">
-      <img id="social_twitter" src="{{ asset('photos/download.png') }}" alt="" />
-      <img id="social_facebook" src="{{ asset('photos/facebook.jpg') }}" alt="" />
-    </a>
-  </div>
-
-</footer>
-
-{% block javascripts %}
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js " integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI " crossorigin="anonymous "></script>
-
-{% endblock %}
-
-</body>
-</html>
-=======
                           <li>
                             <a class="dropdown-item" href="{{ path('logout') }}">Se déconnecter</a>
                           </li>
@@ -216,6 +99,8 @@
 
                         {# is_granted est une fonction TWIG qui permet de voir les données de la session utilisateur et de savoir siun utilisateur ADMIN peut avoir accès au back office #}
                     
+                    
+
                     
                       {% if is_granted('ROLE_ADMIN') %}
                        
@@ -232,16 +117,15 @@
       </nav>
     </header>
 
- <h3 class="text-center"> DocX, la boîte qui gère X documents à votre place</h1>
+ 
 
   {% block body %}
 
     <body>
-      <div class="conteneur container-fluid">
+      <div class="col-md-8 offset-md-3">
 
         {# Affichage des templates #}
-            
-            
+         
           
       </div>
     </body>
@@ -300,8 +184,6 @@
             {# Route vers Réseaux Sociaux #}
             <li><a href="">RÉSEAUX SOCIAUX</a></li>
 
-            <small>Suivez-nous sur les réseaux sociaux</small>
-
             <img src="{{ asset('photos/facebook.png') }}" alt="Facebook">
             <img src="{{ asset('photos/github.jpg') }}" alt="Github">
             <img src="{{ asset('photos/twitter.png') }}" alt="Twitter">
@@ -312,4 +194,3 @@
       </footer>
 </html>
  
->>>>>>> a8549623717d9b2a5f2cbc6966d073520e5eaf4c

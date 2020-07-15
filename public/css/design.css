@@ -1,185 +1,16 @@
+/* NAVIGATION */
 
 
-.menu li{
-    padding: -92px;
-}
+.cardmariage{
 
-.photo{
-    padding: -92px;
-}
-
-.menunav li{
-  
-    margin-top: 10px;
-}
-
-
-.mr-auto menu{
-    margin-top: -69px;
-    width:300px;
-    height:300px;
-}
-
-#carousel{
-
-    float:center;
-    margin-top:-91px;
-
-    margin-top:120px;
-    margin-left: 544px;
-}
-
-body
-{
-    background: #eefdee;
-    font-family: 'Anonymous Pro', monospace, Arial, Helvetica, sans-serif;
-
-
-}
-
-/* .mr-auto menu {
-    position: top;
-	border-top: 108px;
-	box-shadow: 0 1px 2px;
-	border-radius:4px;
-	padding:20px 25px;
-	margin:50px 0 25px 0;
-} */
-
-/* utile?
-li .menu
-{
-
-    text-align:center;
-    margin-left: 76px;
-    display: inline;
-    list-style: none;
-    color: #4ab64a;
-
-}
-*/
-
-.carousel
-{
-    float:center;
-    margin-top:50px;
-}
-
-/* footer{
-    
-    position:absolute;
-<<<<<<< HEAD
-    padding:0;
-    width:100%;
-    height:50px;
-=======
-    padding:0
-    bottom: 0; 
-    
-    Right: 0;
-    width: 100%;
-    height: 50px;
->>>>>>> 7957dc7d102f2925dfb63b4574e38581be13fda1
-    
-    } */
-
-blockquote
-{
-    margin: 120px;
-    font-size: 1,25rem;
-}
-
-ul li
-{
-    /* list-style-type: none; */
-    display: inline-block; 
-    margin-left: 12px;
-}
-
-.guillemets
-{
-    width: 80px;
-}
-
-.navigation
-{
-    background:#eefdee;
-
-}
-
-.menu li a
-{   
-    list-style-type: none;
-    color: #4ab64a;
-    padding-top:50px;
-    position: center;
-    display: inline;
-    margin: 70px;
-}
-
-.footer
-{
-    background:#323232;
-    height: 50px;
-    
-}
-/* .coordonnees li a
-{
-    color: #4ab64a;
-    margin-top: 100px;
-
-} */
-
-/* .navbar
-{
-    color:#323232;
-} */
-
-.logo
-{
-    width: 200px;
+        height:18rem;
+        margin-top: 14px;
+        width: 5rem;
+        float: left;
+        display: flex;
+    flex-direction: row;   
    
-}
-
-/* .navigation_navbar{
-    color:#323232;
-} */
-
-
-/* .navigation li{
-      font-size: 25px;
-      color:#323232;
-
-} */
-
-
-/* .footer, li{
-      color:  #4ab64a;
-      padding-top: 10px;
-      
-      
-} */
-
-.coordonnees li
-{
-    list-style-type:none;
-    display: inline;
-    padding-right: 30px;
-    margin: 50px;
-    position:  center 
-}
-
-
-.footer li a
-{   
-    color:  #4ab64a;
-    position: center;
-    list-style-type: none;
-    display: inline;
-    padding-right: 30px;
-    margin: 70px;
-    font-size: 20px;
- 
+        
 }
 
 
@@ -216,6 +47,10 @@ body
 } */
 
 /* FOOTER */
+
+
+
+
 .footer
 {
     background:#323232;
@@ -228,7 +63,7 @@ body
 small, p
 {
     color:white;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
 }
 
 footer section{
@@ -242,8 +77,8 @@ footer section{
 
 .socials img
 {
-	width: 60px;
-	height: 60px;
+	width: 40px;
+	height: 40px;
     margin: 10px;
     border-radius:50px;
 }

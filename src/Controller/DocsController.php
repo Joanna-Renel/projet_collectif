@@ -7,7 +7,9 @@ use App\Form\DocsType;
 use App\Entity\Utilisateur;
 use App\Repository\DocsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -29,7 +31,7 @@ class DocsController extends AbstractController
     On crée un formulaire d'ajout de documents
     */
       /**
-     * @Route("/membre/{id}/docs/ajout", name="docs_add")
+     * @Route("/membre/docs/ajout/{id}", name="add_docs")
      */
     public function addDocs(Docs $docs, Request $request, EntityManagerInterface $manager)
     {
@@ -45,7 +47,7 @@ class DocsController extends AbstractController
             $manager->persist($docs);
             $manager->flush();
         }
-dump($request);
+        dump($request);
 
         return $this->render('docs/ajout_docs.html.twig', [
             'formDoc' => $formDoc->createView(),
@@ -53,33 +55,66 @@ dump($request);
         ]);
     }
     
+    
     /*
+    showDocs() affiche la liste des documents
     On récupère la liste de documents appartenant au membre et on l'affiche
     sous forme de table
     */
-       /**
+
+    /**
      * @Route("/membre/{id}/docs", name="docs")
      */
-   
-    public function showDocs(DocsRepository $repo, $id)
+    public function showDocs(UtilisateurRepository $repo, $id)
     {
-        
-        $em = $this->getDoctrine()->getManager();
+        $utilisateur = $repo->find($id);
 
-        $formDoc->handleRequest($request);
-
-        $docs = $repo->find($id);
-
-        dump($docs);
-        dump($colonnes);
-
-        return $this->render('utilisateur/membre_document.html.twig', [
-            'colonnes' => $colonnes,
-            'docs' => $docs
+        dump($utilisateur);
+        return $this->render('docs/show.html.twig', [
+            'utilisateur' => $utilisateur,
         ]);
     }
-   
 
+    // public function showDocs(DocsRepository $repo)
+    // {
+        
+    //     $em = $this->getDoctrine()->getManager();
+
+    //     $colonnes = $em->getClassMetaData(Docs::class)->getFieldNames();
+
+    //     $docs = $repo->findAll();
+
+    //     dump($docs);
+        
+    //     $user = $this->getUser();
+    //     dump($user);
+
+    //     return $this->render('docs/show.html.twig', [
+    //         'colonnes' => $colonnes,
+    //         'docs' => $docs, 
+    //         'id' => $docs->getUtilisateur()->getId(),
+    //     ]);
+       
+    // }
+   
+   
+    // SUPPRESSION DE DOCUMENT
+    /**
+     * @Route("/docs/delete/{id}", name="delete_docs")
+     * Method({"DELETE"})
+     */
+    public function delete(DocsRepository $repo, Request $request, EntityManagerInterface $manager, $id)
+    {
+        $doc = $repo->find($id);
+
+        $manager->remove($doc);
+        $manager->flush();
+
+        // On définit un objet $response qui enverra grâce à la méthode send() 
+        // une réponse qui sera récupérée par javascript pour afficher l'alerte
+        $response = new Response;
+        $response->send();
+    }
 
     /*
         On définit la fonction qui permettra d'ajouter un document en BDD

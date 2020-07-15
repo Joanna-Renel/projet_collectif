@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Docs;
+use App\Form\DocsType;
 use App\Entity\Utilisateur;
 use App\Repository\DocsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -23,26 +25,61 @@ class DocsController extends AbstractController
         dans la vue membre_document
     */
 
-    /**
-     * @Route("membre/{id}/docs", name="docs")
+    /*
+    On crée un formulaire d'ajout de documents
+    */
+      /**
+     * @Route("/membre/{id}/docs/ajout", name="docs_add")
      */
-    public function showDocs(DocsRepository $repo)
+    public function addDocs(Docs $docs, Request $request, EntityManagerInterface $manager)
     {
+        $docs = new Docs;
 
-        // $utilisateur = new Utilisateur;
+        $formDoc = $this->createForm(DocsType::class, $docs);
+
+        $formDoc->handleRequest($request);
+
+        if($formDoc->isSubmitted() && $formDoc->isValid())
+        {
+            
+            $manager->persist($docs);
+            $manager->flush();
+        }
+dump($request);
+
+        return $this->render('docs/ajout_docs.html.twig', [
+            'formDoc' => $formDoc->createView(),
+            'docs' => $docs
+        ]);
+    }
+    
+    /*
+    On récupère la liste de documents appartenant au membre et on l'affiche
+    sous forme de table
+    */
+       /**
+     * @Route("/membre/{id}/docs", name="docs")
+     */
+   
+    public function showDocs(DocsRepository $repo, $id)
+    {
+        
         $em = $this->getDoctrine()->getManager();
 
         $colonnes = $em->getClassMetaData(Docs::class)->getFieldNames();
 
-        $documents = $repo->findAll();
-        dump($documents);
+        $docs = $repo->find($id);
+
+        dump($docs);
         dump($colonnes);
 
         return $this->render('utilisateur/membre_document.html.twig', [
             'colonnes' => $colonnes,
-            'documents' => $documents
+            'docs' => $docs
         ]);
     }
+   
+
 
     /*
         On définit la fonction qui permettra d'ajouter un document en BDD
@@ -52,20 +89,28 @@ class DocsController extends AbstractController
         On crée ensuite la variable $document qui réceptionnera le document 
         ajouté par l'utilisateur puis l'enverra en BDD via $manager
     */
-    public function ajoutDocument(Docs $document, EntityManagerInterface $manager)
-    {
-        $document = new Docs;
+    // public function ajoutDocument(Docs $document, EntityManagerInterface $manager)
+    // {
+    //     $document = new Docs;
 
-        $manager->persist($document);
+    //     $manager->persist($document);
 
-        $manager->flush();
+    //     $manager->flush();
 
-        return $this->render('membre/membre_document.html.twig');
-    }
+    //     return $this->render('membre/membre_document.html.twig');
+    // }
 
     /*
+    On calcule la taille totale des documents présents en BDD
     */
     /**
      * @Route
      */
+    public function tailleTotale(Docs $docs, DocsRepository $repo, $taille)
+    {
+        $docs = $repo->find($taille);
+    }
+
+
+
 }

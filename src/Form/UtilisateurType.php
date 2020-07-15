@@ -19,8 +19,8 @@ class UtilisateurType extends AbstractType
             // ->add('pseudo')// input de contrôle créé indépendamment
             ->add('nom')
             ->add('adresse')
-            ->add('password', PasswordType::class)
-            ->add('confirm_password')
+            // ->add('password', PasswordType::class)
+            // ->add('confirm_password')
         ;
     }
 

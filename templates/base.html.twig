@@ -1,32 +1,39 @@
-
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
- <meta charset="UTF-8>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Site de gestion de documents">
 
   <title>{% block title %} NOTRE PROJET COLLECTIF {% endblock %}</title>
   
   {% block stylesheets %}
   
-  <link href=" https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap " rel="stylesheet ">
-  <link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css " integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk " crossorigin="anonymous ">
-  <link rel = “stylesheet” href = ” path / to / font -awesome / css / font – awesome.min.css ” >
-  <link rel="stylesheet " href="{{ asset( 'css/design.css') }} "> {# asset() :  dossier 'public' et permettant de générer une URL jusqu'au fichier style.css #}
-   {% endblock %}
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">    <link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css " integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk " crossorigin="anonymous ">
+    <link rel="stylesheet " href = "path / to / font -awesome / css / font – awesome.min.css">
+    <link rel="stylesheet " href="{{ asset( 'css/design.css') }} "> {# asset() :  dossier 'public' et permettant de générer une URL jusqu'au fichier style.css #}
+  
+  {% endblock %}
  
-   </head>
+</head>
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">  </a>
+<nav class="navbar navbar-expand-lg">
+
+  <a class="navbar-brand" href="#"> DOC X </a>
+
+  <div class="logo"> 
+    <img src="{{asset('photos/logo.png')}} ">
+  </div> 
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <div class="collapse navbar-collapse " id="navbarSupportedContent ">
 
-   <div class="collapse navbar-collapse " id="navbarSupportedContent ">
-    <ul class="mr-auto menu  d-flex text-center ">
+    <ul class="menu d-flex text-center ">
 
+<<<<<<< HEAD
       <li class="menu">
         <a class="logo" href="# "> DOCX
         </a>
@@ -38,6 +45,15 @@
 
 
        <li class="menunav">
+=======
+      {# <li class="menu1">
+        <a class="nav" href="# ">
+          <span class="sr-only ">(current)</span>
+        </a>
+      </li> #}
+
+      <li class="menu2">
+>>>>>>> 7957dc7d102f2925dfb63b4574e38581be13fda1
         <a class="nav" href="">ACCUEIL</a>
       </li>
 
@@ -52,49 +68,56 @@
 
       <li class="menunav dropdown">
  <a class="nav-link dropdown-toggle" href="{{ path('registration') }} ">MEMBRE</a><id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          MEMBRE
         </a>
-
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
-          <a class="dropdown-item" href="#">S'inscrire</a>
-         
-          <a class="dropdown-item" href="#">Se connecter</a>      
-        <div class="dropdown-divider"></div>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ path('registration') }} ">S'incrire</a>
+          <a class="dropdown-item" href="{{ path('registration') }} ">Se connecter</a>
+          {# <div class="dropdown-divider"></div> #}
         </div>
-      </li>     
+      </li>
+    </ul> 
+
+  </div>
 </nav>
 
 {% block body %}
-<section class="container-fluid">
 
-<div class="blockquote"> 
-</div>
+  <section class="container-fluid">
 
 
+  </section>
 
-</section>
 {% endblock %}
 
-<footer class=" footer text-center ">
-					<li><a href="turtle@odc.com">CONTACT</a></li>
-					<li><a href="">CGU</a></li>
-          <li><a href="RESEAUX SOCIAUX">CONTACT</a></li>
-        <a href="Réseaux sociaux">  <class="logo" img src="download="" /></a>
-        <class="logo"><img src="download.png" alt="" /></a>
-        <class="logo"><img src="facebook.jpg" alt="" /></a>
-        <li>RGPD</li>
+<footer class="py-5 footer text-center ">
+
+  <ul>
+    <li><a href="@mailto:turtles@docx.com">CONTACT</a></li>
+    <li><a href="">CGU</a></li>
+    <li><a href="#social">RESEAUX SOCIAUX</a></li>
+    
+    <li><a href="">RGPD</a></li>
   </ul>
 
+  <div  style="height: 100px; display: none;">
+    <a id="social" href="">
+      <img id="social_twitter" src="{{ asset('photos/download.png') }}" alt="" />
+      <img id="social_facebook" src="{{ asset('photos/facebook.jpg') }}" alt="" />
+    </a>
+  </div>
 
-</footer>{% block javascripts %}
+</footer>
 
-
-
+{% block javascripts %}
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js " integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI " crossorigin="anonymous "></script>
 
-{%endblock %}
+{% endblock %}
 
 </body>
 </html>

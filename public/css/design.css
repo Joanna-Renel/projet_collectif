@@ -44,7 +44,7 @@ body
 small, p
 {
     color:white;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
 }
 
 footer section{
@@ -58,8 +58,8 @@ footer section{
 
 .socials img
 {
-	width: 60px;
-	height: 60px;
+	width: 40px;
+	height: 40px;
     margin: 10px;
     border-radius:50px;
 }

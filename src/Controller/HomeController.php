@@ -16,10 +16,10 @@ class HomeController extends AbstractController
      * @Route("/home", name="home")
      */
 
-    // La méthode index() renvoie le contenu de la page d'accueil
-    public function index()
+    // La méthode home() renvoie le contenu de la page d'accueil
+    public function home()
     {
-        return $this->render('home/index.html.twig', [
+        return $this->render('home/home.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
@@ -50,7 +50,7 @@ class HomeController extends AbstractController
                 $notification->notify($contact);
 
                 // Confirmation d'envoi de l'email grâce à la méthode addFlash()
-                $this->addFlash('success', 'Votre email a bien été envoyé');
+                $this->addFlash('email', 'Votre email a bien été envoyé');
 
                 // on prépare l'insertion
                 $manager->persist($contact);

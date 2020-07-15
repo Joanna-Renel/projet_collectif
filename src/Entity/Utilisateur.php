@@ -99,28 +99,23 @@ class Utilisateur implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Docs::class, inversedBy="utilisateurs")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $docs;
+    private $roles = ["ROLE_USER"];
 
     /**
      * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="utilisateur", orphanRemoval=true)
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Docs::class, mappedBy="utilisateur", orphanRemoval=true)
+     */
+    private $docs;
+
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
+        $this->docs = new ArrayCollection();
     }
-
     
-
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -237,25 +232,13 @@ class Utilisateur implements UserInterface
             // Cette méthide ne retourne que les ROLE_USER de la BDD. Les administrateurs n'ont pas accès au site car ils ont un ROLE_ADMIN
             // qui n'est pas retourné par cette méthode.
             
-            return ['ROLE_USER'];
+            return $this->roles;
 
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function getDocs(): ?Docs
-    {
-        return $this->docs;
-    }
-
-    public function setDocs(?Docs $docs): self
-    {
-        $this->docs = $docs;
 
         return $this;
     }
@@ -285,6 +268,37 @@ class Utilisateur implements UserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUtilisateur() === $this) {
                 $comment->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Docs[]
+     */
+    public function getDocs(): Collection
+    {
+        return $this->docs;
+    }
+
+    public function addDoc(Docs $doc): self
+    {
+        if (!$this->docs->contains($doc)) {
+            $this->docs[] = $doc;
+            $doc->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDoc(Docs $doc): self
+    {
+        if ($this->docs->contains($doc)) {
+            $this->docs->removeElement($doc);
+            // set the owning side to null (unless already changed)
+            if ($doc->getUtilisateur() === $this) {
+                $doc->setUtilisateur(null);
             }
         }
 

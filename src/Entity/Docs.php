@@ -56,13 +56,16 @@ class Docs
     private $date_echeance;
 
     /**
-     * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="docs", orphanRemoval=true)
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="docs")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $utilisateurs;
+    private $utilisateur;
+
 
     public function __construct()
     {
         $this->utilisateurs = new ArrayCollection();
+        $this->utilisateur = new ArrayCollection();
     }
 
 
@@ -91,6 +94,25 @@ class Docs
     public function setTaille(string $taille): self
     {
         $this->taille = $taille;
+
+        return $this;
+    }
+
+
+
+    public function getDocFile(): ?File 
+    {
+        return $this->docFile;
+    }
+
+    public function setDocFile(?File $docFile = null): self
+    {
+        $this->docFile = $docFile;
+
+        if($this->docFile instanceof UploadedFile)
+        {
+            $this->updated_at = new \DateTime('now');
+        }
 
         return $this;
     }
@@ -131,52 +153,19 @@ class Docs
         return $this;
     }
 
-
-    public function getDocFile(): ?File 
+    public function getUtilisateur(): ?Utilisateur
     {
-        return $this->docFile;
+        return $this->utilisateur;
     }
 
-    public function setDocFile(?File $docFile = null): self
+    public function setUtilisateur(?Utilisateur $utilisateur): self
     {
-        $this->docFile = $docFile;
-
-        if($this->docFile instanceof UploadedFile)
-        {
-            $this->updated_at = new \DateTime('now');
-        }
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Utilisateur[]
-     */
-    public function getUtilisateurs(): Collection
-    {
-        return $this->utilisateurs;
-    }
+    
 
-    public function addUtilisateur(Utilisateur $utilisateur): self
-    {
-        if (!$this->utilisateurs->contains($utilisateur)) {
-            $this->utilisateurs[] = $utilisateur;
-            $utilisateur->setDocs($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUtilisateur(Utilisateur $utilisateur): self
-    {
-        if ($this->utilisateurs->contains($utilisateur)) {
-            $this->utilisateurs->removeElement($utilisateur);
-            // set the owning side to null (unless already changed)
-            if ($utilisateur->getDocs() === $this) {
-                $utilisateur->setDocs(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

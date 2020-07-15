@@ -60,7 +60,7 @@ class RegistrationController extends AbstractController
             $manager->flush();
 
             // Affichage de la confirmation d'inscription du nouveau membre
-            $this->addFlash('inscription', 'Félicitations pour votre inscription. Vous pouvez maintenant vous connecter.');
+            // $this->addFlash('success', 'Félicitations pour votre inscription. Vous pouvez maintenant vous connecter.');
 
             // Redirection vers la page de connexion quand l'inscription a été correctement réalisée
             return $this->redirectToRoute("login");

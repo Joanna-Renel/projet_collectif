@@ -15,15 +15,16 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
 {
-    /**
-     * @Route("/inscription", name="registration")
-     */
-
+    
     // La méthode register() affiche le formulaire d'inscription qui permet de s'inscrire sur Docx
     // Request est une classe prédéfinie en Symfony qui stocke les données véhiculées par les superglobales et exécute les requêtes en BDD.
     // EntityManagerInterface est une classe prédéfinie en Symfony qui permet de manipuler les lignes de la BDD (INSERT, UPDATE, DELETE)
     // UserPasswordEncoderInterface est une classe prédéfinie en Symfony qui contient des méthodes abstraites pour encoder le mot de passe dans la BDD
     // Il faut donc les déclarer dans le controller, même si elles ne seront pas utilisées par la suite.
+    
+    /**
+     * @Route("/inscription", name="registration")
+     */
     public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {   
         // Création d'une variable qui précise à quelle entité sera reliée notre formulaire.

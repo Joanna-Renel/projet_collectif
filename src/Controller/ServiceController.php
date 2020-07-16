@@ -11,12 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ServiceController extends AbstractController
 {
+    // Méthode qui permet l'affiche de la page services et qui permet de laisser un commentaire sur les services utilisés par les membres.
+
     /**
      * @Route("/service", name="service")
      */
-
-     // Méthode qui permet l'affiche de la page services et qui permet de laisser un commentaire sur les services utilisés par les membres.
-    public function comment()
+    public function comment(Comments $comments = null, Request $request, EntityManagerInterface $manager)
     {   
         // Création d'un nouveau commentaire
        /*  $comments = new Comments;

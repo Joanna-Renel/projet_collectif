@@ -17,9 +17,8 @@
                 <th>Prolonger</th>
                 <th>Supprimer</th>
             </thead>
-         {{dump(docs)}} 
 
-            {# {{ dump(userId)}} #}
+       
             <tbody>
 
                  {% for doc in docs.docs %} 
@@ -34,6 +33,11 @@
                         <td><a class="btn btn-danger delete-doc" data-id="{{ doc.id }}" href="#"><i class="far fa-trash-alt"></i></a></td> 
                     </tr>
                 {% endfor %}  
+
+                
+                
+
+              
 
             </tbody>
         </table>

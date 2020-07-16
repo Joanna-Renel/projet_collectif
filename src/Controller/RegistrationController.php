@@ -15,15 +15,16 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
 {
-    /**
-     * @Route("/inscription", name="registration")
-     */
 
     // La méthode register() affiche le formulaire d'inscription qui permet de s'inscrire sur Docx
     // Request est une classe prédéfinie en Symfony qui stocke les données véhiculées par les superglobales et exécute les requêtes en BDD.
     // EntityManagerInterface est une classe prédéfinie en Symfony qui permet de manipuler les lignes de la BDD (INSERT, UPDATE, DELETE)
     // UserPasswordEncoderInterface est une classe prédéfinie en Symfony qui contient des méthodes abstraites pour encoder le mot de passe dans la BDD
     // Il faut donc les déclarer dans le controller, même si elles ne seront pas utilisées par la suite.
+
+    /**
+     * @Route("/inscription", name="registration")
+     */
     public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {   
         // Création d'une variable qui précise à quelle entité sera reliée notre formulaire.
@@ -49,7 +50,7 @@ class RegistrationController extends AbstractController
 
             // On transmet le MDP au seter de l'objet $utilisateur pour le hacher
             $utilisateur->setPassword($hash);
--
+
             // On affecte un ROLE_USER par défaut à chaque nouvel inscrit sur le site. Il n'aura donc pas accès au back office.
             // $utilisateur->setRoles(["ROLE_USER"]);
 
@@ -77,47 +78,45 @@ class RegistrationController extends AbstractController
     
     }
 
+
+    // La méthode login() affiche le formulaire de connexion qui permet de se connecter à son profil sur Docx.
+
     /**
      * @Route("/connexion", name="login")
      */
+    public function login(AuthenticationUtils $authenticationUtils) : Response
+    {      
+        $utilisateur = new Utilisateur;
 
-     // La méthode login() affiche le formulaire de connexion qui permet de se connecter à son profil sur Docx.
-     public function login(AuthenticationUtils $authenticationUtils) : Response
-     {      
-            $utilisateur = new Utilisateur;
-
-            // AuthenticationUtils est une classe prédéfinie en Symfony qui contient des méthodes qui renvoient un message d'erreur en cas de mauvaise connexion
-            // (si l'internaute a saisi des identifiants incorrects au moment de la connexion).
-            
-            // $error affiche le message d'erreur
-            $error = $authenticationUtils->getLastAuthenticationError();
-
-            
-            // Elle permet aussi de récupérer le dernier username (email) renseigné par l'internaute en cas d'erreur de connexion.
-            $lastUsername = $authenticationUtils->getLastUsername();
-
-                // Redirection vers l'espace personnel du membre quand l'inscription a été réalisée.
-                // return $this->redirectToRoute("membre", [
-                //     'id' => $utilisateur->getId()
-                // ]);
-            dump($utilisateur);
-            // On envoie le message d'erreur et le dernier email saisi sur le template responsable de l'affichage du formulaire de connexion.
-            return $this->render('registration/login.html.twig', [
-                'last_username' => $lastUsername,
-                'error' => $error,
-                'id' => $utilisateur->getId()
-            ]);
+        // AuthenticationUtils est une classe prédéfinie en Symfony qui contient des méthodes qui renvoient un message d'erreur en cas de mauvaise connexion
+        // (si l'internaute a saisi des identifiants incorrects au moment de la connexion).
         
-     }
+        // $error affiche le message d'erreur
+        $error = $authenticationUtils->getLastAuthenticationError();
 
+        
+        // Elle permet aussi de récupérer le dernier username (email) renseigné par l'internaute en cas d'erreur de connexion.
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+            // Redirection vers l'espace personnel du membre quand l'inscription a été réalisée.
+            // return $this->redirectToRoute("membre", [
+            //     'id' => $utilisateur->getId()
+            // ]);
+        dump($utilisateur);
+        // On envoie le message d'erreur et le dernier email saisi sur le template responsable de l'affichage du formulaire de connexion.
+        return $this->render('registration/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            // 'id' => $utilisateur->getId()
+        ]);
+    
+    }
+
+    // Cette route permet de se déconnecter
 
     /**
      * @Route("/deconnexion", name="logout")
-     *
      */
-
-    // Cette route permet de se déconnecter
-    
     public function logout()
     {
         // Cette méthode ne retourne rien. Il nous suffit d'avoir une route pour la déconnexion.

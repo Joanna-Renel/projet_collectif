@@ -24,7 +24,7 @@ class AdminController extends AbstractController
 
     public function admin()
     {
-        return $this->render('admin/admin.html.twig', [ ]);
+        return $this->render('admin/admin.html.twig');
 
     }
 
@@ -93,7 +93,8 @@ class AdminController extends AbstractController
         */
         return $this->render('admin/admin_membre.html.twig', [
             'colonne' => $colonnes,
-            'utilisateur' => $utilisateurs
+            'utilisateur' => $utilisateurs,
+            'id' => $utilisateurs->getId()
         ]);
     }
 

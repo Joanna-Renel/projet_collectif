@@ -64,7 +64,7 @@
 
                 <li class="nav-item dropdown">
                   {# Route vers membre {{ path('membre') }} ne fonctionne pas #}
-                  <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link" href="" id="navbarDropdownMenuLink"  aria-haspopup="true" aria-expanded="false">
                     MEMBRE
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> 
@@ -104,7 +104,7 @@
                        
                         {# Accès au Back Office #}
                           <li>
-                              <a class="dropdown-item" href="{{ path('admin') }}">Back Office</a>
+                              <a class="dropdown-item" href="{{ path('admin')}}">Back Office</a>
                           </li>
 
                       {% endif %}

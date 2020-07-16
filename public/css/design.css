@@ -1,6 +1,6 @@
 /* NAVIGATION */
 
-ul li, a
+ul li, .navigation a, footer a
 {   
     
     display: inline-block;
@@ -30,21 +30,29 @@ body
     float:center;
     margin-top:50px;
 } */
-
+a
+{
+    color: white !important;
+    text-decoration:none;
+}
 /* FOOTER */
 .footer
 {
     background:#323232;
     color:#4ab64a;
     display:flex;
-    flex-wrap:wrap;
-    
+    flex-wrap:wrap;  
 }
 
 small, p
 {
     color:white;
     flex-wrap:nowrap;
+}
+
+footer
+{
+    
 }
 
 footer section{

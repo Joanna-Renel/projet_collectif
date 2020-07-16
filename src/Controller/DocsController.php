@@ -11,6 +11,7 @@ use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DocsController extends AbstractController
@@ -30,28 +31,64 @@ class DocsController extends AbstractController
     /*
     On crée un formulaire d'ajout de documents
     */
-      /**
+    /**
      * @Route("/membre/docs/ajout/{id}", name="add_docs")
      */
-    public function addDocs(Docs $docs, Request $request, EntityManagerInterface $manager)
+    public function addDocs(Docs $docs, Request $request, SluggerInterface $slugger, EntityManagerInterface $manager)
     {
         $docs = new Docs;
 
-        $formDoc = $this->createForm(DocsType::class, $docs);
+        $form = $this->createForm(DocsType::class, $docs);
 
-        $formDoc->handleRequest($request);
+        $form->handleRequest($request);
 
-        if($formDoc->isSubmitted() && $formDoc->isValid())
+        if($form->isSubmitted() && $form->isValid())
         {
-            
+            $docFile = $formDoc->get('docFile')->getData();
+
+            // Le champ docfile n'étant pas requis, le document sera traité uniquement lorsqu'un pdf sera chargé
+            // if($docs)
+            // {
+            //     // $taille = $docs->getDocFile();
+            // }
+            if ($docFile) {
+                $originalFilename = pathinfo($docFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // On inclut le nom du fichier comme une partie de l'url
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$docFile->guessExtension();
+
+                // On déplace le fichier vers le dossier de stockage des documents
+                try {
+                    $docFile->move(
+                        $this->getParameter('documents_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->getError();
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $docs->setDocFilename($newFilename);
+            }
+            $form->getData()
+                ->setCreatedAt(new \DateTime('now'))
+                ->setDateEdition($date);
+
+              // ... persist the $product variable or any other work
             $manager->persist($docs);
             $manager->flush();
+
+            return $this->redirect($this->generateUrl('app_doc_list'));
+           
         }
         dump($request);
 
         return $this->render('docs/ajout_docs.html.twig', [
-            'formDoc' => $formDoc->createView(),
-            'docs' => $docs
+            'formDoc' => $form->createView(),
+            'docs' => $docs,
+            'request' => $request,
+            // 'taille' => $taille
         ]);
     }
     
@@ -75,27 +112,6 @@ class DocsController extends AbstractController
         ]);
     }
 
-    // public function showDocs(DocsRepository $repo)
-    // {
-        
-    //     $em = $this->getDoctrine()->getManager();
-
-    //     $colonnes = $em->getClassMetaData(Docs::class)->getFieldNames();
-
-    //     $docs = $repo->findAll();
-
-    //     dump($docs);
-        
-    //     $user = $this->getUser();
-    //     dump($user);
-
-    //     return $this->render('docs/show.html.twig', [
-    //         'colonnes' => $colonnes,
-    //         'docs' => $docs, 
-    //         'id' => $docs->getUtilisateur()->getId(),
-    //     ]);
-       
-    // }
    
    
     // SUPPRESSION DE DOCUMENT
@@ -106,7 +122,8 @@ class DocsController extends AbstractController
     public function delete(DocsRepository $repo, Request $request, EntityManagerInterface $manager, $id)
     {
         $doc = $repo->find($id);
-
+    
+        $em = $this->getDoctrine()->getManager();
         $manager->remove($doc);
         $manager->flush();
 
@@ -115,6 +132,7 @@ class DocsController extends AbstractController
         $response = new Response;
         $response->send();
     }
+    
 
     /*
         On définit la fonction qui permettra d'ajouter un document en BDD
@@ -138,13 +156,13 @@ class DocsController extends AbstractController
     /*
     On calcule la taille totale des documents présents en BDD
     */
-    /**
-     * @Route
-     */
-    public function tailleTotale(Docs $docs, DocsRepository $repo, $taille)
-    {
-        $docs = $repo->find($taille);
-    }
+    // /**
+    //  * @Route
+    //  */
+    // public function tailleTotale(Docs $docs, DocsRepository $repo, $taille)
+    // {
+    //     $docs = $repo->find($taille);
+    // }
 
 
 

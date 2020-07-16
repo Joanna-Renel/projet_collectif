@@ -22,7 +22,10 @@
                             </option>
                         </select>
                     </div>
+                    {{ dump(docs.docFile.size) }}
+                    {# {{ dump(taille) }} #}
 
+{# {{ dump(docs)}} #}
                     <div>
 
                         {{ form_row(formDoc.docFile, {label:'choisir document '},{'attr':{'label':'choisir','class':'mx-auto'}}) }}

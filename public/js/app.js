@@ -1,3 +1,4 @@
+alert(1);
 /*
 SUPPRESSION DE DOCUMENTS
 */

@@ -26,14 +26,57 @@
 
   </head>
 
+<body>
+  <header>
+        {# NAV #}
+    <nav class="navigation row navbar mx-auto justify-content-around text-center">
 
-    <header>
-          {# NAV #}
-      <nav class="navigation row navbar mx-auto justify-content-around text-center">
+          {# path() est une fonction Twig permettant de générer une URL en fonction du nom de la route envoyée en argument.
+          ex : path('blog') --> URL 'blog'#}
 
-            {# path() est une fonction Twig permettant de générer une URL en fonction du nom de la route envoyée en argument.
-            ex : path('blog') --> URL 'blog'#}
+          {# LOGO et Route vers l'accueil  #}
+          <a class="logo navbar-brand" href="{{ path('home') }}">
+            DOCX
+          </a>
+          
+          <img src="{{ asset('photos/logo.png') }}" width="70" height="70" class="d-inline" alt="documents_administratifs" loading="lazy">
 
+          <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="liens collapse navbar-collapse">
+            
+            <ul class="menu d-flex text-center">
+              <li class="">
+                {# Route vers accueil #}
+                <a class="" href="{{ path('home') }}">ACCUEIL</a>
+              </li>
+
+              <li class="">
+                {# Route vers services ne fonctionne pas#}
+                <a class="" href="{{ path('service') }}">SERVICES</a>
+              </li>
+
+              <li class="">
+                {# Route vers about #}
+                <a class="" href="{{ path('about') }}">À PROPOS</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                {# Route vers membre {{ path('membre') }} ne fonctionne pas #}
+                <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  MEMBRE
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> 
+
+                  {# Condition pour modifier l'affichage pour se déconnecter quand on est connecté #}
+
+                      {# app.user permet de stocker les informations de l'internaute qui est connecté, cad les informations de la session en cours. #}
+                      
+                      {# Si app.user renvoie FALSE, donc si l'internaute n'est pas connecté, on entre dans le if et les liens pour s'inscrire et se connecter apparaît #}
+                    
+                  
             {# LOGO et Route vers l'accueil  #}
             <a class="logo navbar-brand" href="{{ path('home') }}">
               DOCX
@@ -73,32 +116,56 @@
 
                         {# app.user permet de stocker les informations de l'internaute qui est connecté, cad les informations de la session en cours. #}
                         
-                        {# Si app.user renvoie FALSE, donc si l'internaute n'est pas connecté, on entre dans le if et les liens pour s'inscrire et se connecter apparaît #}
                       
-                      {% if not app.user %}
+                     
+                    {# Si app.user renvoie FALSE, donc si l'internaute n'est pas connecté, on entre dans le if et les liens pour s'inscrire et se connecter apparaît #}
+               {% if not app.user %}
+              
+                          <a class="dropdown-item" href="{{ path('login') }}">Se connecter</a>
+                    {# Si app.user renvoie TRUE, donc si l'internaute est connecté, il peut se déconnecter pour être redirigé vers l'accueil. #}
+                    {% else %} 
 
-                          <li>
-                            <a class="dropdown-item" href="{{ path('registration') }}">S'inscrire</a>
-                          </li>
+                    {# Lien de déconnexion pour redirection vers l'accueil #}
+                          <a class="dropdown-item" href="{{ path('logout') }}">Se déconnecter</a>
 
-                          <li>
-                            <a class="dropdown-item" href="{{ path('login') }}">Se connecter</a>
-                          </li>
-                      {# Si app.user renvoie TRUE, donc si l'internaute est connecté, il peut se déconnecter pour être redirigé vers l'accueil. #}
-                      {% else %} 
+                    {% endif %}
 
-                      {# Lien de déconnexion pour redirection vers l'accueil #}
+                    {# Condition pour avoir avoir accès au Back Office si l'internaute connecté a un rôle admininistrateur #}
 
-                          <li>
-                            <a class="dropdown-item" href="{{ path('logout') }}">Se déconnecter</a>
-                          </li>
+                      {# is_granted est une fonction TWIG qui permet de voir les données de la session utilisateur et de savoir siun utilisateur ADMIN peut avoir accès au back office #}
+                  
+                  
+                    {% if is_granted('ROLE_ADMIN') %}
 
-                      {% endif %}
+                      
+                      {# Accès au Back Office #}
+                            <a class="dropdown-item" href="{{ path('admin') }}">Back Office</a>
 
-                      {# Condition pour avoir avoir accès au Back Office si l'internaute connecté a un rôle admininistrateur #}
+                    {% endif %}
+                </div>
+              </li>
+            </ul>
+          </div>
+    </nav>
+  </header>
+
+{% block body %}
+
+    <div class="conteneur container-fluid">
+
+      {# Affichage des templates #}
+          
+          
+        
+    </div>
+
+{% endblock %}
+
 
                         {# is_granted est une fonction TWIG qui permet de voir les données de la session utilisateur et de savoir siun utilisateur ADMIN peut avoir accès au back office #}
                     
+                    
+
                     
                       {% if is_granted('ROLE_ADMIN') %}
                        
@@ -107,88 +174,81 @@
                               <a class="dropdown-item" href="{{ path('admin')}}">Back Office</a>
                           </li>
 
-                      {% endif %}
-                  </div>
-                </li>
-              </ul>
-            </div>
-      </nav>
-    </header>
+{# FOOTER #}
+<footer class="footer row navbar mx-auto justify-content-around">
 
- 
 
-  {% block body %}
+  <ul style="list-style-type:disc" class="">
+    <section>
+
+      <div class="footer-items">
+
+        <div class="footer-item">
+          {# Route vers Contact #}
+          <li><a href="{{ path('contact')}}" mailto:turtles@docx.com>CONTACT</a></li>
+          <small>
+          Où nous trouver ? 2 rue Eugène Pottier, 78190 Trappes
+          </small>
+        </div>
+
+        <div class="footer-item">
+          {# Route vers CGV #}
+          <li><a href="https://www.entreprises.cci-paris-idf.fr/web/reglementation/contrats-modeles/commerciaux/conditions-generales-de-vente-entre-professionnels">CGU</a></li>
+          <small>
+          Conditions Générales de Vente
+          </small>
+        </div>
+
+        <div class="footer-item">
+          {# Route vers RGPD #}
+          <li><a href="https://www.cnil.fr/fr/comprendre-le-rgpd">RGPD</a></li>
+            <small>
+            Comprendre le RGPD
+            </small>
+        </div>
 
     <body>
       <div class="col-md-8 offset-md-3">
 
         {# Affichage des templates #}
          
-          
       </div>
-    </body>
 
- {% endblock %}
 
-  {% block javascripts %}
+      <div class="socials">
+        {# Route vers Réseaux Sociaux #}
+        <li><a href="">RÉSEAUX SOCIAUX</a></li>
 
-          {# JS-JQUERY  BOOTSTRAP  #}
-          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-          
-          {# APP.JS #}
-          {#<script src ="{{ asset('app.js') }}"></script>#}
+        <small>Suivez-nous sur les réseaux sociaux</small>
 
-  {% endblock %}
+        <img src="{{ asset('photos/facebook.png') }}" alt="Facebook">
+        <img src="{{ asset('photos/github.jpg') }}" alt="Github">
+        <img src="{{ asset('photos/twitter.png') }}" alt="Twitter">
 
-      {# FOOTER #}
-      <footer class="footer row navbar mx-auto justify-content-around">
+      </div>
+  </ul>
+  <p> &copy; 2020 - Joanna Rénel - Stéphanie Mbapou - Angélique Thiaw - Tous droits réservés.</p>
+</footer>
 
-      <ul style="list-style-type:disc" class="">
-        <section>
+{% block javascripts %}
 
-          <div class="footer-items">
 
-            <div class="footer-item">
-              {# Route vers Contact #}
-              <li><a href="{{ path('contact')}}" mailto:turtles@docx.com>CONTACT</a></li>
-              <small>
-              Où nous trouver ? 2 rue Eugène Pottier, 78190 Trappes
-              </small>
-            </div>
+{# JS-JQUERY  BOOTSTRAP  #}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-            <div class="footer-item">
-              {# Route vers CGU #}
-              <li><a href="https://www.entreprises.cci-paris-idf.fr/web/reglementation/contrats-modeles/commerciaux/conditions-generales-de-vente-entre-professionnels">CGU</a></li>
-              <small>
-              Conditions Générales de Vente
-              </small>
-            </div>
 
-            <div class="footer-item">
-            {# Route vers RGPD #}
-            <li><a href="https://www.cnil.fr/fr/comprendre-le-rgpd">RGPD</a></li>
-              <small>
-              Comprendre le RGPD
-              </small>
-            </div>
-
-          </div>
-
-        </section>
-
-         <div class="socials">
-            {# Route vers Réseaux Sociaux #}
-            <li><a href="">RÉSEAUX SOCIAUX</a></li>
+{# APP.JS #}
+<script src ="/js/app.js"></script>
 
             <img src="{{ asset('photos/facebook.png') }}" alt="Facebook">
             <img src="{{ asset('photos/github.jpg') }}" alt="Github">
             <img src="{{ asset('photos/twitter.png') }}" alt="Twitter">
 
-          </div>
-      </ul>
-        <p> &copy; 2020 - Joanna Rénel - Stéphanie Mbapou - Angélique Thiaw - Tous droits réservés.</p>
-      </footer>
+
+{% endblock %}
+
+</body>
 </html>
  

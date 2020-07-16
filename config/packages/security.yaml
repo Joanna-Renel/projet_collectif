@@ -52,7 +52,7 @@ security:
 
                 # check_path indique à Symfony sur quelle route il doit contrôler les données saisies dans le formulaire de connexion
                 check_path: login
- 
+            
             logout:
                 # route de déconnexion
                 path: logout

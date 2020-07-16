@@ -76,10 +76,51 @@
                       
                       {# Si app.user renvoie FALSE, donc si l'internaute n'est pas connecté, on entre dans le if et les liens pour s'inscrire et se connecter apparaît #}
                     
-                    {% if not app.user %}
+                  
+            {# LOGO et Route vers l'accueil  #}
+            <a class="logo navbar-brand" href="{{ path('home') }}">
+              DOCX
+            </a>
+            
+            <img src="{{ asset('photos/logo.png') }}" width="70" height="70" class="d-inline" alt="documents_administratifs" loading="lazy">
+            
+           
 
-                          <a class="dropdown-item" href="{{ path('registration') }}">S'inscrire</a>
 
+            <div class="liens ">
+              
+              <ul>
+                <li class="">
+                  {# Route vers accueil #}
+                  <a class="" href="{{ path('home') }}">ACCUEIL</a>
+                </li>
+
+                <li class="">
+                  {# Route vers services ne fonctionne pas#}
+                  <a class="" href="{{ path('service') }}">SERVICES</a>
+                </li>
+
+                <li class="">
+                  {# Route vers about #}
+                  <a class="" href="{{ path('about') }}">À PROPOS</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  {# Route vers membre {{ path('membre') }} ne fonctionne pas #}
+                  <a class="nav-link" href="" id="navbarDropdownMenuLink"  aria-haspopup="true" aria-expanded="false">
+                    MEMBRE
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> 
+
+                    {# Condition pour modifier l'affichage pour se déconnecter quand on est connecté #}
+
+                        {# app.user permet de stocker les informations de l'internaute qui est connecté, cad les informations de la session en cours. #}
+                        
+                      
+                     
+                    {# Si app.user renvoie FALSE, donc si l'internaute n'est pas connecté, on entre dans le if et les liens pour s'inscrire et se connecter apparaît #}
+               {% if not app.user %}
+              
                           <a class="dropdown-item" href="{{ path('login') }}">Se connecter</a>
                     {# Si app.user renvoie TRUE, donc si l'internaute est connecté, il peut se déconnecter pour être redirigé vers l'accueil. #}
                     {% else %} 
@@ -95,6 +136,7 @@
                   
                   
                     {% if is_granted('ROLE_ADMIN') %}
+
                       
                       {# Accès au Back Office #}
                             <a class="dropdown-item" href="{{ path('admin') }}">Back Office</a>
@@ -129,7 +171,7 @@
                        
                         {# Accès au Back Office #}
                           <li>
-                              <a class="dropdown-item" href="{{ path('admin') }}">Back Office</a>
+                              <a class="dropdown-item" href="{{ path('admin')}}">Back Office</a>
                           </li>
 
 {# FOOTER #}

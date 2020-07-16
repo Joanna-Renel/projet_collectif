@@ -74,14 +74,18 @@
       <li class="list-group-item">L’audition des futurs époux</li>
     </ul> #}
 
+
 </div>
 
 {# Si l'utilisateur est connecté, affichage du formulaire pour enregistrer un commentaire #}
 {% if app.user %}
 
+
   <h1 class="display-4 text-center my-4">Laissez un commentaire</h1>
 
+
     {{ form_start(formCommentaire, {'attr': {'class': 'col-md-7 mx-auto'}}) }}
+
 
         {{ form_row(formCommentaire.pseudo, {'label': 'Pseudo', 'attr': {'placeholder': "Votre nom"}}) }} 
         
@@ -94,5 +98,5 @@
 {% endif %}
 
 
-{% endblock %}
 
+{% endblock %}

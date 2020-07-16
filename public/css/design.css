@@ -1,5 +1,20 @@
 /* NAVIGATION */
 
+
+.cardmariage{
+
+        height:18rem;
+        margin-top: 14px;
+        width: 5rem;
+        float: left;
+        display: flex;
+    flex-direction: row;   
+   
+        
+}
+
+
+
 ul li, a
 {   
     
@@ -32,6 +47,10 @@ body
 } */
 
 /* FOOTER */
+
+
+
+
 .footer
 {
     background:#323232;

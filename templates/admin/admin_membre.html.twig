@@ -15,16 +15,11 @@
                Si les données récupérées ne concernent pas celles de la colonne 'id' en BDD, la boucle affiche les données récupérées dans les autres colonnes.  #}
 
             <tr>
-                {% for data in colonne %}
-    
-                    {% if data != 'id' %}
-    
-                        <th>{{ data }}</th>
-    
-                    {% endif %}
-    
-                {% endfor %}
-
+                
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Modifier</th>
             {# Ajout d'un bouton pour supprimer un utilisateur #}
                     <th>Supprimer</th>
             </tr>
@@ -35,14 +30,15 @@
 
             {% for data in utilisateur %}
                 <tr>
+
                     <td>{{ data.prenom }}</td>
                     <td>{{ data.nom }}</td>
                     <td>{{ data.adresse }}</td>
 
                     {# route paramétrée qui attend un id dans l'url.
                     Le paramètre 'id' à envoyer se trouve dans 'data' qui contient toutes les données d'un membre par tour de boucle #}
-                    <td><a class="btn btn-dark" href="{{ path('admin_membre', {'id': data.id}) }}"><i class="far fa-edit"></i>Modifier</a></td>
-                    <td><a class="btn btn-danger" href="{{ path('admin_membre', {'id': data.id}) }}"><i class="far fa-trash-alt"></i>Supprimer</a></td>
+                    <td><a class="btn btn-dark" href="{{ path('adminMembre', {'id': data.id}) }}"><i class="far fa-edit"></i></a></td>
+                    <td><a class="btn btn-danger" href="{{ path('adminMembre', {'id': data.id}) }}"><i class="far fa-trash-alt"></i></a></td>
 
                     {# Condition permettant de démarrer ou prolonger un abonnement premium #}
                     {% if 'premium' == 'non'%}

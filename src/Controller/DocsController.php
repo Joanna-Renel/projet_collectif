@@ -108,7 +108,7 @@ class DocsController extends AbstractController
 
         dump($utilisateur);
         return $this->render('docs/show.html.twig', [
-            'utilisateur' => $utilisateur,
+            'docs' => $utilisateur,
         ]);
     }
 

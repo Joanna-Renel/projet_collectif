@@ -21,7 +21,6 @@ class AdminController extends AbstractController
     /**
     * @Route("/admin", name="admin")
     */
-
     public function admin()
     {
         return $this->render('admin/admin.html.twig');
@@ -72,9 +71,9 @@ class AdminController extends AbstractController
     */
 
     /**
-    * @Route("/admin/membre/{id}", name="admin_membre")
+    * @Route("/admin/membre", name="adminMembre")
     */
-    public function adminMembre(UtilisateurRepository $repo, $id)
+    public function adminMembre(UtilisateurRepository $repo)
     {   
         // On appelle getManager afin de récupérer le noms des champs et des colonnes
         $meta = $this->getDoctrine()->getManager();
@@ -94,7 +93,6 @@ class AdminController extends AbstractController
         return $this->render('admin/admin_membre.html.twig', [
             'colonne' => $colonnes,
             'utilisateur' => $utilisateurs,
-            'id' => $utilisateurs->getId()
         ]);
     }
 
@@ -103,17 +101,15 @@ class AdminController extends AbstractController
     */
 
     /**
-    * @Route("/admin/document/{id}", name="admin_document")
+    * @Route("/admin/document", name="adminDocument")
     */
-
-    public function adminDocs(DocsRepository $repo, $id)
+    public function adminDocs(DocsRepository $repo)
     {
         $meta = $this->getDoctrine()->getManager();
 
         $colonnes = $meta->getClassMetaData(Docs::class)->getFieldNames();
         
         $docs = $repo->findAll();
-
 
         return $this->render('admin/admin_document.html.twig', [
             'colonne' => $colonnes, 
@@ -126,16 +122,17 @@ class AdminController extends AbstractController
     */
 
     /**
-    * @Route("/admin/commentaire/{id}", name="admin_commentaire")
+    * @Route("/admin/commentaire", name="adminCommentaire")
     */
-
-    public function adminCommentaire(CommentsRepository $repo, $id)
+    public function adminCommentaire(CommentsRepository $repo)
     {
+        $commentaire = new Comments;
+
         $meta = $this->getDoctrine()->getManager();
 
         $colonnes = $meta->getClassMetaData(Comments::class)->getFieldNames();
         
-        $docs = $repo->findAll();
+        $commentaire = $repo->findAll();
 
 
         return $this->render('admin/admin_commentaire.html.twig', [

@@ -42,13 +42,13 @@
 
                      {# La BDD renvoie un objet DateTime donc il ne peut pas être converti en chaîne de caractères.
                     Le filtre date de Twig renvoie convertit cet objet en mois, jour, année  et heure, minute, seconde #}
-                    <td>{{ data.created_at|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
+                    <td>{{ data.createdAt|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
 
-                    <td>{{ data.date_edition|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
-                    <td>{{ data.date_echeance|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
+                    <td>{{ data.dateEdition|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
+                    <td>{{ data.dateEcheance|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
 
-                    <td><a class="btn btn-dark" href="{{ path('admin_docs', {'id': data.id}) }}"><i class="far fa-edit"></i>Modifier</a></td>
-                    <td><a class="btn btn-danger" href="{{ path('admin_docs', {'id': data.id}) }}"><i class="far fa-trash-alt"></i>Supprimer</a></td>
+                    <td><a class="btn btn-dark" href="{{ path('adminDocument', {'id': data.id}) }}"><i class="far fa-edit"></i>Modifier</a></td>
+                    <td><a class="btn btn-danger" href="{{ path('adminDocument' , {'id': data.id}) }}"><i class="far fa-trash-alt"></i>Supprimer</a></td>
                 </tr>
             {% endfor %}     
     

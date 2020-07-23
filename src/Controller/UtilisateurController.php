@@ -64,14 +64,15 @@ class UtilisateurController extends AbstractController
 
             // $manager = $this->getDoctrine()->getManager();
             $manager->persist($utilisateur);
-
+            
+            $this->addFlash('notice', 'Vos modifications ont bien été prises en compte');
             return $this->redirectToRoute('membre', [
                 'id' => $utilisateur->getId(),
             ]);
-
+            
         }
         $manager->flush();
-        $this->addFlash('notice', 'Vos modifications ont bien été prises en compte');
+       
         dump($utilisateur);
 
 

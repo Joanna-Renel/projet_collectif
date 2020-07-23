@@ -1,27 +1,16 @@
-/* NAVIGATION */
 
+/* BODY */
 
-<!--ul li, .navigation a, footer a-->
-
-
-.cardmariage{
-
-        height:18rem;
-        margin-top: 14px;
-        width: 5rem;
-        float: left;
-        display: flex;
-    flex-direction: row;   
-         
-}
-
-
-
-ul li, a
-
+body
 {   
-    
-    display: inline-block;
+    background: #eefdee !important;
+    font-family: 'Anonymous Pro', monospace, Arial, Helvetica, sans-serif !important; 
+}
+/*
+NAVIGATION
+*/
+.navigation li a, footer a
+{   
     font-size: 25px;
     font-weight: bold !important;
     list-style: none;
@@ -30,32 +19,18 @@ ul li, a
 
 }
 
-/* .dropdown a
-{
-    display: block;
-} */
 
-/* BODY */
-
-body
-{   
-    background: #eefdee !important;
-    font-family: 'Anonymous Pro', monospace, Arial, Helvetica, sans-serif !important; 
-
-}
-/* .carousel
+.carousel
 {
     float:center;
     margin-top:50px;
-} */
+}
+
 a
 {
-    color: white !important;
+    color: black !important;
     text-decoration:none;
 }
-/* FOOTER */
-
-
 
 
 .footer
@@ -72,12 +47,9 @@ small, p
     flex-wrap:nowrap;
 }
 
-footer
-{
-    
-}
 
-footer section{
+footer ul
+{
 	justify-content: center;
 }
 

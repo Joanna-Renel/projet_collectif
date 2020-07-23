@@ -6,10 +6,10 @@
 <div class="col-md-10">
     
 
-    <div class="col-md-8">
+    <div class="col-md-12">
         <h2>LISTE DES COMMENTAIRES</h2>
 
-        <table class="table table-bordered text-center">
+        <table class="table table-bordered text-center ">
             {# Création d'une boucle pour récupérer les données de chaque colonne de la table Comments.
                À chaque tour de boucle, la variable de réception 'data' récupère les données d'une colonne.
                Si les données récupérées ne concernent pas celles de la colonne 'id' en BDD, la boucle affiche les données récupérées dans les autres colonnes.  #}
@@ -33,18 +33,18 @@
                À chaque tour de boucle, la variable de réception 'data' récupère les données d'un commentaire
                et affiche le pseudo du memebre, la date de publication du commentaire et le commentaire dans une cellule.  #}
 
-            {% for data in utilisateur %}
+            {% for data in commentaire %}
                 <tr>
                     <td>{{ data.pseudo }}</td>
                     {# La BDD renvoie un objet DateTime donc il ne peut pas être converti en chaîne de caractères.
                     Le filtre date de Twig convertit cet objet en mois, jour, année et heure, minute, seconde #}
-                    <td>{{ data.created_at|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
+                    <td>{{ data.createdAt|date("m/d/Y") }} à {{ data.createdAt|date("H:i:s")}} </td>
 
                     {# J'interpole dans la variable data et j'y pioche le contenu de chaque article
                     - le filtre TWIG raw échappe les balises html <p> stockés en BDD et affiche le texte brut  #}
                     <td>{{ data.commentaire|raw }}</td>
-                    <td><a class="btn btn-dark" href="{{ path('admin_commentaire', {'id': data.id}) }}"><i class="far fa-edit"></i>Modifier</a></td>
-                    <td><a class="btn btn-danger" href="{{ path('admin_commentaire', {'id': data.id}) }}"><i class="far fa-trash-alt"></i>Supprimer</a></td>
+                    <td><a class="btn btn-dark" href="{{ path('adminCommentaire', {'id': data.id}) }}"><i class="far fa-edit"></i>Modifier</a></td>
+                    <td><a class="btn btn-danger" href="{{ path('adminCommentaire', {'id': data.id}) }}"><i class="far fa-trash-alt"></i>Supprimer</a></td>
  
                 </tr>
             {% endfor %}     
